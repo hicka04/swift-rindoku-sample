@@ -11,12 +11,15 @@ import UIKit
 class ListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
+    let cellId = "cellId"
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
     }
 }
 
@@ -31,7 +34,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         cell.textLabel?.text = "hoge"
         return cell
     }

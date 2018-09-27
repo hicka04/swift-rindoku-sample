@@ -38,4 +38,28 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = "hoge"
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailView = DetailViewController()
+        navigationController?.pushViewController(detailView, animated: true)
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

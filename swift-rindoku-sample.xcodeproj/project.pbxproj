@@ -61,11 +61,11 @@
 				17DFDD62211E7BE40060A993 /* AppDelegate.swift */,
 				17DFDD64211E7BE40060A993 /* ListViewController.swift */,
 				17DFDD74211E7D840060A993 /* ListViewController.xib */,
+				9CA20FA6215C7EEB0014433A /* DetailViewController.swift */,
+				9CA20FA7215C7EEB0014433A /* DetailViewController.xib */,
 				17DFDD69211E7BF10060A993 /* Assets.xcassets */,
 				17DFDD6B211E7BF10060A993 /* LaunchScreen.storyboard */,
 				17DFDD6E211E7BF10060A993 /* Info.plist */,
-				9CA20FA6215C7EEB0014433A /* DetailViewController.swift */,
-				9CA20FA7215C7EEB0014433A /* DetailViewController.xib */,
 			);
 			path = "swift-rindoku-sample";
 			sourceTree = "<group>";

@@ -30,7 +30,8 @@ class ListViewController: UIViewController {
         // 登録しておくとcellForRowAtでdequeueReusableCellから取得できるようになる
         // セルの使い回しができる
         // CellReuseIdentifierは使い回し時にも使うのでプロパティに切り出すのがおすすめ
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        let nib = UINib(nibName: "RepositoryCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellId)
     }
 }
 
@@ -48,8 +49,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // viewDidLoadで登録しておいたセルを取得
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = data[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RepositoryCell
+        cell.set(repositoryName: data[indexPath.row])
         return cell
     }
     

@@ -12,6 +12,14 @@ class ListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     let cellId = "cellId"
+    
+    // 配列を定義してこれを元にtableViewに表示
+    // APIクライアントを作ったらそのデータに差し替え
+    let data = [
+        "hoge",
+        "fuga",
+        "piyo"
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +33,19 @@ class ListViewController: UIViewController {
         // 登録しておくとcellForRowAtでdequeueReusableCellから取得できるようになる
         // セルの使い回しができる
         // CellReuseIdentifierは使い回し時にも使うのでプロパティに切り出すのがおすすめ
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        // Xibで作ったセルを登録するときはUINib(nibBName:bundle:)を使う必要がある
+        let nib = UINib(nibName: "RepositoryCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: cellId)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // 画面が表示され始めたタイミングで
+        // tableViewで選択中のセルがあれば非選択状態にする
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 }
 
@@ -38,13 +58,15 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        // 配列の要素数を返す
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // viewDidLoadで登録しておいたセルを取得
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = "hoge"
+        // カスタムセルを取り出すときはキャストが必要(強制案ラップでOK)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RepositoryCell
+        cell.set(repositoryName: data[indexPath.row])
         return cell
     }
     

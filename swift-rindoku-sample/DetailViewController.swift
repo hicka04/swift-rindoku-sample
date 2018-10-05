@@ -11,6 +11,8 @@ import WebKit
 
 class DetailViewController: UIViewController {
     
+    // iOS10未満を対応しているアプリで
+    // WKWebViewをXibで配置するとクラッシュするので注意(バグです)
     @IBOutlet private weak var webView: WKWebView!
 
     override func viewDidLoad() {

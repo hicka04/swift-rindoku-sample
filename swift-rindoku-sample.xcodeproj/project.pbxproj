@@ -21,6 +21,7 @@
 		9C62B1952165B0FF00B15B5C /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62B1932165B0FF00B15B5C /* RepositoryCell.swift */; };
 		9C62B1962165B0FF00B15B5C /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */; };
 		9C993F222178232D00D789B1 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C993F212178232D00D789B1 /* HTTPMethod.swift */; };
+		9C993F242178252F00D789B1 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C993F232178252F00D789B1 /* GitHubAPI.swift */; };
 		9CA20FA8215C7EEB0014433A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA20FA6215C7EEB0014433A /* DetailViewController.swift */; };
 		9CA20FA9215C7EEB0014433A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA20FA7215C7EEB0014433A /* DetailViewController.xib */; };
 /* End PBXBuildFile section */
@@ -42,6 +43,7 @@
 		9C62B1932165B0FF00B15B5C /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
 		9C993F212178232D00D789B1 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		9C993F232178252F00D789B1 /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
 		9CA20FA6215C7EEB0014433A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9CA20FA7215C7EEB0014433A /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +127,7 @@
 			children = (
 				9C042FF6216EF2D700689273 /* GitHubRequset.swift */,
 				9C993F212178232D00D789B1 /* HTTPMethod.swift */,
+				9C993F232178252F00D789B1 /* GitHubAPI.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				17DFDD65211E7BE40060A993 /* ListViewController.swift in Sources */,
 				17DFDD63211E7BE40060A993 /* AppDelegate.swift in Sources */,
 				9C042FEB216EE9B700689273 /* User.swift in Sources */,
+				9C993F242178252F00D789B1 /* GitHubAPI.swift in Sources */,
 				9C042FF7216EF2D700689273 /* GitHubRequset.swift in Sources */,
 				9C62B1952165B0FF00B15B5C /* RepositoryCell.swift in Sources */,
 				9C042FF2216EEFDF00689273 /* GitHubAPIError.swift in Sources */,

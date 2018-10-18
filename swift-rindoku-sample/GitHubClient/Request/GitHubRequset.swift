@@ -19,6 +19,6 @@ protocol GitHubRequset {
 extension GitHubRequset {
     
     var baseURL: URL {
-        return URL(string: "https://arbeit.nifty.com")!
+        return URL(string: "https://api.github.com")!
     }
 }

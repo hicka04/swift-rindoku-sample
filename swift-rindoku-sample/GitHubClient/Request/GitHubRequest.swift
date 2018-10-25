@@ -41,4 +41,15 @@ extension GitHubRequest {
         
         return urlRequest
     }
+    
+    func response(from data: Data, urlResponse: URLResponse) throws -> Response {
+        let decoder = JSONDecoder()
+        
+        guard let statusCode = (urlResponse as? HTTPURLResponse)?.statusCode,
+            (200..<300).contains(statusCode) else {
+                throw try decoder.decode(GitHubAPIError.self, from: data)
+        }
+        
+        return try decoder.decode(Response.self, from: data)
+    }
 }

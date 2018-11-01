@@ -15,11 +15,13 @@ class ListViewController: UIViewController {
     
     // 配列を定義してこれを元にtableViewに表示
     // APIクライアントを作ったらそのデータに差し替え
-    let data = [
-        "hoge",
-        "fuga",
-        "piyo"
-    ]
+    var data: [Repository] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +38,21 @@ class ListViewController: UIViewController {
         // Xibで作ったセルを登録するときはUINib(nibBName:bundle:)を使う必要がある
         let nib = UINib(nibName: "RepositoryCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellId)
+        
+        let request = GitHubAPI.SearchRepositories(keyword: "swift")
+        GitHubClient().send(request: request) { [weak self] result in
+            switch result {
+            case .success(let value):
+                self?.data = value.items
+            case .failure(.connectionError(let error)):
+                break
+            case .failure(.responseParseError(let error)):
+                break
+            case .failure(.apiError(let error)):
+                break
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,7 +83,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         // viewDidLoadで登録しておいたセルを取得
         // カスタムセルを取り出すときはキャストが必要(強制案ラップでOK)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RepositoryCell
-        cell.set(repositoryName: data[indexPath.row])
+        cell.set(repositoryName: data[indexPath.row].fullName)
         return cell
     }
     

@@ -91,7 +91,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         // セル選択後に呼ばれる
         // 押されたセルの場所(indexPath)などに応じて処理を変えることができるが
         // 今回は必ずDetailViewControllerに遷移するように実装
-        let detailView = DetailViewController()
+        let repository = data[indexPath.row]
+        let detailView = DetailViewController(repository: repository)
         
         // navigationController:画面遷移を司るクラス
         // pushViewController(_:animated:)で画面遷移できる

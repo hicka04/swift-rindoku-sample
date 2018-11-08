@@ -118,6 +118,9 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 extension ListViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        defer {
+            searchController.dismiss(animated: true, completion: nil)
+        }
         guard let searchBarText = searchBar.text,
             !searchBarText.isEmpty else {
             return
@@ -125,7 +128,6 @@ extension ListViewController: UISearchBarDelegate {
         
         keyword = searchBarText
         
-        searchController.dismiss(animated: true, completion: nil)
         tableView.setContentOffset(.zero, animated: true)
     }
 }

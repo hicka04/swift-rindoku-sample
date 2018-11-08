@@ -126,5 +126,6 @@ extension ListViewController: UISearchBarDelegate {
         keyword = searchBarText
         
         searchController.dismiss(animated: true, completion: nil)
+        tableView.setContentOffset(.zero, animated: true)
     }
 }

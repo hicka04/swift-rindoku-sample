@@ -13,7 +13,6 @@ class ListViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
-        searchController.dimsBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "キーワードを入力"
         searchController.searchBar.delegate = self
         return searchController
@@ -52,6 +51,8 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.title = "Search"
+        
+        definesPresentationContext = true
         
         // tableViewのカスタマイズをするためにdelegateとdataSourceを設定
         // 今回は自身をUITableViewDelegateとUITableViewDataSourceに準拠させて使う

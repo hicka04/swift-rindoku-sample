@@ -11,8 +11,32 @@ import UIKit
 class ListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
-    let cellId = "cellId"
+    private lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.placeholder = "キーワードを入力"
+        searchController.searchBar.delegate = self
+        return searchController
+    }()
     
+    private let cellId = "cellId"
+    
+    private var keyword = "" {
+        didSet {
+            let request = GitHubAPI.SearchRepositories(keyword: keyword)
+            GitHubClient().send(request: request) { [weak self] result in
+                switch result {
+                case .success(let value):
+                    self?.data = value.items
+                case .failure(.connectionError(let error)):
+                    break
+                case .failure(.responseParseError(let error)):
+                    break
+                case .failure(.apiError(let error)):
+                    break
+                }
+            }
+        }
+    }
     // 配列を定義してこれを元にtableViewに表示
     // APIクライアントを作ったらそのデータに差し替え
     var data: [Repository] = [] {
@@ -25,6 +49,10 @@ class ListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Search"
+        
+        definesPresentationContext = true
         
         // tableViewのカスタマイズをするためにdelegateとdataSourceを設定
         // 今回は自身をUITableViewDelegateとUITableViewDataSourceに準拠させて使う
@@ -39,20 +67,8 @@ class ListViewController: UIViewController {
         let nib = UINib(nibName: "RepositoryCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: cellId)
         
-        let request = GitHubAPI.SearchRepositories(keyword: "swift")
-        GitHubClient().send(request: request) { [weak self] result in
-            switch result {
-            case .success(let value):
-                self?.data = value.items
-            case .failure(.connectionError(let error)):
-                break
-            case .failure(.responseParseError(let error)):
-                break
-            case .failure(.apiError(let error)):
-                break
-            }
-        }
-        
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,5 +113,22 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         // navigationController:画面遷移を司るクラス
         // pushViewController(_:animated:)で画面遷移できる
         navigationController?.pushViewController(detailView, animated: true)
+    }
+}
+
+extension ListViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        defer {
+            searchController.dismiss(animated: true, completion: nil)
+        }
+        guard let searchBarText = searchBar.text,
+            !searchBarText.isEmpty else {
+            return
+        }
+        
+        keyword = searchBarText
+        
+        tableView.setContentOffset(.zero, animated: true)
     }
 }

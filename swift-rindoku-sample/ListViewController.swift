@@ -27,12 +27,11 @@ class ListViewController: UIViewController {
                 switch result {
                 case .success(let value):
                     self?.data = value.items
-                case .failure(.connectionError(let error)):
-                    break
-                case .failure(.responseParseError(let error)):
-                    break
-                case .failure(.apiError(let error)):
-                    break
+                case .failure(let error):
+                    let alert = UIAlertController.createGitHubErrorAlert(from: error)
+                    DispatchQueue.main.async {
+                        self?.present(alert, animated: true, completion: nil)
+                    }
                 }
             }
         }

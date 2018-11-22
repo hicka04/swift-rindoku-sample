@@ -12,7 +12,6 @@
 		17DFDD6A211E7BF10060A993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DFDD69211E7BF10060A993 /* Assets.xcassets */; };
 		17DFDD6D211E7BF10060A993 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17DFDD6B211E7BF10060A993 /* LaunchScreen.storyboard */; };
 		17DFDD75211E7D840060A993 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DFDD74211E7D840060A993 /* ListViewController.xib */; };
-		9C03347C21A64B420092795A /* UIAlertController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C03347B21A64B420092795A /* UIAlertController+extension.swift */; };
 		9C042FEB216EE9B700689273 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C042FEA216EE9B700689273 /* User.swift */; };
 		9C042FED216EE9C200689273 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C042FEC216EE9C200689273 /* Repository.swift */; };
 		9C042FEF216EED4D00689273 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C042FEE216EED4D00689273 /* SearchResponse.swift */; };
@@ -36,7 +35,6 @@
 		17DFDD6C211E7BF10060A993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17DFDD6E211E7BF10060A993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17DFDD74211E7D840060A993 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
-		9C03347B21A64B420092795A /* UIAlertController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+extension.swift"; sourceTree = "<group>"; };
 		9C042FEA216EE9B700689273 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9C042FEC216EE9C200689273 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		9C042FEE216EED4D00689273 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 				17DFDD6E211E7BF10060A993 /* Info.plist */,
 				9C62B1932165B0FF00B15B5C /* RepositoryCell.swift */,
 				9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */,
-				9C03347B21A64B420092795A /* UIAlertController+extension.swift */,
 			);
 			path = "swift-rindoku-sample";
 			sourceTree = "<group>";
@@ -218,7 +215,6 @@
 				9C993F222178232D00D789B1 /* HTTPMethod.swift in Sources */,
 				17DFDD65211E7BE40060A993 /* ListViewController.swift in Sources */,
 				17DFDD63211E7BE40060A993 /* AppDelegate.swift in Sources */,
-				9C03347C21A64B420092795A /* UIAlertController+extension.swift in Sources */,
 				9C23A87B2181625C00C72BBF /* GitHubClient.swift in Sources */,
 				9C042FEB216EE9B700689273 /* User.swift in Sources */,
 				9C993F242178252F00D789B1 /* GitHubAPI.swift in Sources */,

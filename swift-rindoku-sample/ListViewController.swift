@@ -36,7 +36,8 @@ class ListViewController: UIViewController {
                 }
             }
             
-            UserDefaults.standard.set(keyword, forKey: keywordSaveKey)
+            let data = try! JSONEncoder().encode(SearchKeywordHistoryEntity(keyword: keyword, lastSearchAt: Date()))
+            UserDefaults.standard.set(data, forKey: keywordSaveKey)
             if searchController.searchBar.text?.isEmpty ?? true {
                 searchController.searchBar.text = keyword
             }
@@ -75,8 +76,8 @@ class ListViewController: UIViewController {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        if let keyword = UserDefaults.standard.string(forKey: keywordSaveKey) {
-            self.keyword = keyword
+        if let history = UserDefaults.standard.data(forKey: keywordSaveKey) {
+            self.keyword = try! JSONDecoder().decode(SearchKeywordHistoryEntity.self, from: history).keyword
         }
     }
     

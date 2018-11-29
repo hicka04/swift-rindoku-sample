@@ -20,6 +20,7 @@ class ListViewController: UIViewController {
     
     private let cellId = "cellId"
     
+    private let keywordSaveKey = "searchKeyword"
     private var keyword = "" {
         didSet {
             let request = GitHubAPI.SearchRepositories(keyword: keyword)
@@ -33,6 +34,11 @@ class ListViewController: UIViewController {
                         self?.present(alert, animated: true, completion: nil)
                     }
                 }
+            }
+            
+            UserDefaults.standard.set(keyword, forKey: keywordSaveKey)
+            if searchController.searchBar.text?.isEmpty ?? true {
+                searchController.searchBar.text = keyword
             }
         }
     }
@@ -68,6 +74,10 @@ class ListViewController: UIViewController {
         
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        
+        if let keyword = UserDefaults.standard.string(forKey: keywordSaveKey) {
+            self.keyword = keyword
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

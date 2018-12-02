@@ -36,8 +36,7 @@ class ListViewController: UIViewController {
                 }
             }
             
-            let data = try! JSONEncoder().encode(SearchKeywordHistoryEntity(keyword: keyword, lastSearchAt: Date()))
-            UserDefaults.standard.set(data, forKey: keywordSaveKey)
+            saveHistory(keyword: keyword)
             if searchController.searchBar.text?.isEmpty ?? true {
                 searchController.searchBar.text = keyword
             }
@@ -76,8 +75,15 @@ class ListViewController: UIViewController {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        if let history = UserDefaults.standard.data(forKey: keywordSaveKey) {
-            self.keyword = try! JSONDecoder().decode(SearchKeywordHistoryEntity.self, from: history).keyword
+        guard let historyData = UserDefaults.standard.data(forKey: keywordSaveKey) else {
+            return
+        }
+        let histories = try! JSONDecoder().decode([SearchKeywordHistoryEntity].self, from: historyData)
+        let last = histories.sorted { (arg1, arg2) in
+            arg1.lastSearchAt < arg2.lastSearchAt
+            }.last
+        if let lastKeyword = last?.keyword {
+            keyword = lastKeyword
         }
     }
     
@@ -89,6 +95,21 @@ class ListViewController: UIViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+    
+    private func saveHistory(keyword: String) {
+        var histories: [SearchKeywordHistoryEntity] = []
+        if let historyData = UserDefaults.standard.data(forKey: keywordSaveKey) {
+            histories = try! JSONDecoder().decode([SearchKeywordHistoryEntity].self, from: historyData)
+            if let index = histories.index(where: { $0.keyword == keyword }) {
+                histories.remove(at: index)
+            }
+        }
+        
+        histories.append(SearchKeywordHistoryEntity(keyword: keyword, lastSearchAt: Date()))
+        let data = try! JSONEncoder().encode(histories)
+        
+        UserDefaults.standard.set(data, forKey: keywordSaveKey)
     }
 }
 

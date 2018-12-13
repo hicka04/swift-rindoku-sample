@@ -8,3 +8,9 @@
 
 import Foundation
 import RealmSwift
+
+class SearchKeywordHistory: Object {
+    
+    @objc dynamic var keyword: String = ""
+    @objc dynamic var lastSearchAt: Date = .init()
+}

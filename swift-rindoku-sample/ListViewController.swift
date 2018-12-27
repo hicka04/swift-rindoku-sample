@@ -40,10 +40,16 @@ class ListViewController: UIViewController {
                 searchController.searchBar.text = keyword
             }
             
-            let history = SearchKeywordHistory()
-            history.keyword = keyword
-            try! realm.write {
-                realm.add(history)
+            if let sameKeywordHistory = realm.objects(SearchKeywordHistory.self).first(where: { $0.keyword == keyword }) {
+                try! realm.write {
+                    sameKeywordHistory.lastSearchAt = Date()
+                }
+            } else {
+                let history = SearchKeywordHistory()
+                history.keyword = keyword
+                try! realm.write {
+                    realm.add(history)
+                }
             }
         }
     }
@@ -86,6 +92,8 @@ class ListViewController: UIViewController {
         if let last = realm.objects(SearchKeywordHistory.self).sorted(byKeyPath: "lastSearchAt").last {
             keyword = last.keyword
         }
+        
+        print(realm.objects(SearchKeywordHistory.self))
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -9,12 +9,22 @@
 import UIKit
 import RealmSwift
 
+protocol SearchResultsControllerDelegate: AnyObject {
+    
+    func resultsController(_ resultsController: UIViewController,
+                           didUpdateKeyword keyword: String,
+                           shouldSearch: Bool)
+}
+
 class SearchKeywordHistoryListViewController: UITableViewController {
+    
+    weak var delegate: SearchResultsControllerDelegate?
 
     private var inputKeyword: String = "" {
         didSet {
             let realm = try! Realm()
-            keywordHistories = realm.objects(SearchKeywordHistory.self).sorted(byKeyPath: "lastSearchAt", ascending: false)
+            keywordHistories = realm.objects(SearchKeywordHistory.self)
+                .sorted(byKeyPath: "lastSearchAt", ascending: false)
                 .filter { $0.keyword.contains(self.inputKeyword) }
                 .map { $0.keyword }
         }
@@ -22,6 +32,7 @@ class SearchKeywordHistoryListViewController: UITableViewController {
     
     private var keywordHistories: [String] = [] {
         didSet {
+            guard keywordHistories != oldValue else { return }
             tableView.reloadData()
         }
     }
@@ -29,7 +40,7 @@ class SearchKeywordHistoryListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(UINib(nibName: "SearchKeywordHistoryCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
 }
 
@@ -44,9 +55,16 @@ extension SearchKeywordHistoryListViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = keywordHistories[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchKeywordHistoryCell
+        cell.setKeyword(keywordHistories[indexPath.row])
+        cell.delegate = self
+        
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let keyword = keywordHistories[indexPath.row]
+        delegate?.resultsController(self, didUpdateKeyword: keyword, shouldSearch: true)
     }
 }
 
@@ -56,5 +74,13 @@ extension SearchKeywordHistoryListViewController: UISearchResultsUpdating {
         guard let inputKeyword = searchController.searchBar.text else { return }
         
         self.inputKeyword = inputKeyword
+    }
+}
+
+extension SearchKeywordHistoryListViewController: SearchKeywordHistoryCellDelegate {
+    
+    func didPushButton(keyword: String) {
+        delegate?.resultsController(self,
+                                    didUpdateKeyword: keyword, shouldSearch: false)
     }
 }

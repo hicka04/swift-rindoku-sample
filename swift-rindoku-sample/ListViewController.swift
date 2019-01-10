@@ -13,9 +13,10 @@ class ListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     private lazy var searchController: UISearchController = {
-        let resultController = SearchKeywordHistoryListViewController()
-        let searchController = UISearchController(searchResultsController: resultController)
-        searchController.searchResultsUpdater = resultController
+        let resultsController = SearchKeywordHistoryListViewController()
+        resultsController.delegate = self
+        let searchController = UISearchController(searchResultsController: resultsController)
+        searchController.searchResultsUpdater = resultsController
         searchController.searchBar.placeholder = "キーワードを入力"
         searchController.searchBar.delegate = self
         return searchController
@@ -168,5 +169,19 @@ extension ListViewController: UISearchBarDelegate {
         keyword = searchBarText
         
         tableView.setContentOffset(.zero, animated: true)
+    }
+}
+
+extension ListViewController: SearchResultsControllerDelegate {
+    
+    func resultsController(_ resultsController: UIViewController,
+                           didUpdateKeyword keyword: String,
+                           shouldSearch: Bool) {
+        searchController.searchBar.text = keyword
+        if shouldSearch {
+            self.keyword = keyword
+            searchController.dismiss(animated: true, completion: nil)
+            tableView.setContentOffset(.zero, animated: true)
+        }
     }
 }

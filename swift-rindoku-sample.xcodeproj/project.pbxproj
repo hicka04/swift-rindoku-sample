@@ -28,6 +28,7 @@
 		9CA20FA8215C7EEB0014433A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA20FA6215C7EEB0014433A /* DetailViewController.swift */; };
 		9CA20FA9215C7EEB0014433A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA20FA7215C7EEB0014433A /* DetailViewController.xib */; };
 		9CB98B5821C1FB040011182B /* SearchKeywordHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */; };
+		9CFAF0D121E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFAF0D021E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		9CA20FA6215C7EEB0014433A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		9CA20FA7215C7EEB0014433A /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistory.swift; sourceTree = "<group>"; };
+		9CFAF0D021E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistoryListViewController.swift; sourceTree = "<group>"; };
 		D3012A001AF9E22815FABFFA /* Pods-swift-rindoku-sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-rindoku-sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-swift-rindoku-sample/Pods-swift-rindoku-sample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,6 +106,7 @@
 				9C62B1932165B0FF00B15B5C /* RepositoryCell.swift */,
 				9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */,
 				9C03347B21A64B420092795A /* UIAlertController+extension.swift */,
+				9CFAF0D021E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift */,
 			);
 			path = "swift-rindoku-sample";
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				9C62B1952165B0FF00B15B5C /* RepositoryCell.swift in Sources */,
 				9C042FF2216EEFDF00689273 /* GitHubAPIError.swift in Sources */,
 				9C042FED216EE9C200689273 /* Repository.swift in Sources */,
+				9CFAF0D121E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

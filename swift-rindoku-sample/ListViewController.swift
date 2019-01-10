@@ -13,7 +13,9 @@ class ListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     private lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
+        let resultController = SearchKeywordHistoryListViewController()
+        let searchController = UISearchController(searchResultsController: resultController)
+        searchController.searchResultsUpdater = resultController
         searchController.searchBar.placeholder = "キーワードを入力"
         searchController.searchBar.delegate = self
         return searchController

@@ -19,6 +19,7 @@ class ListViewController: UIViewController {
         searchController.searchResultsUpdater = resultsController
         searchController.searchBar.placeholder = "キーワードを入力"
         searchController.searchBar.delegate = self
+        searchController.delegate = self
         return searchController
     }()
     
@@ -169,6 +170,13 @@ extension ListViewController: UISearchBarDelegate {
         keyword = searchBarText
         
         tableView.setContentOffset(.zero, animated: true)
+    }
+}
+
+extension ListViewController: UISearchControllerDelegate {
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.text = keyword
     }
 }
 

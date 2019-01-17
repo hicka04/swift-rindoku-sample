@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     private lazy var searchController: UISearchController = {
-        let searchController = UISearchController(searchResultsController: nil)
+        let resultsController = SearchKeywordHistoryListViewController()
+        resultsController.delegate = self
+        let searchController = UISearchController(searchResultsController: resultsController)
+        searchController.searchResultsUpdater = resultsController
         searchController.searchBar.placeholder = "キーワードを入力"
         searchController.searchBar.delegate = self
+        searchController.delegate = self
         return searchController
     }()
     
@@ -34,8 +39,38 @@ class ListViewController: UIViewController {
                     }
                 }
             }
+            
+            if searchController.searchBar.text?.isEmpty ?? true {
+                searchController.searchBar.text = keyword
+            }
+            
+            if let sameKeywordHistory = realm.objects(SearchKeywordHistory.self).first(where: { $0.keyword == keyword }) {
+                try! realm.write {
+                    sameKeywordHistory.lastSearchAt = Date()
+                }
+            } else {
+                let max = 50
+                if realm.objects(SearchKeywordHistory.self).count >= max {
+                    realm.objects(SearchKeywordHistory.self).sorted(byKeyPath: "lastSearchAt").enumerated().forEach { (offset, history) in
+                        guard offset >= max - 1 else {
+                            return
+                        }
+                        try! realm.write {
+                            realm.delete(history)
+                        }
+                    }
+                }
+                let history = SearchKeywordHistory()
+                history.keyword = keyword
+                try! realm.write {
+                    realm.add(history)
+                }
+            }
         }
     }
+    
+    let realm = try! Realm()
+    
     // 配列を定義してこれを元にtableViewに表示
     // APIクライアントを作ったらそのデータに差し替え
     var data: [Repository] = [] {
@@ -68,6 +103,12 @@ class ListViewController: UIViewController {
         
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+        
+        if let last = realm.objects(SearchKeywordHistory.self).sorted(byKeyPath: "lastSearchAt").last {
+            keyword = last.keyword
+        }
+        
+        print(realm.objects(SearchKeywordHistory.self))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -129,5 +170,26 @@ extension ListViewController: UISearchBarDelegate {
         keyword = searchBarText
         
         tableView.setContentOffset(.zero, animated: true)
+    }
+}
+
+extension ListViewController: UISearchControllerDelegate {
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        searchController.searchBar.text = keyword
+    }
+}
+
+extension ListViewController: SearchResultsControllerDelegate {
+    
+    func resultsController(_ resultsController: UIViewController,
+                           didUpdateKeyword keyword: String,
+                           shouldSearch: Bool) {
+        searchController.searchBar.text = keyword
+        if shouldSearch {
+            self.keyword = keyword
+            searchController.dismiss(animated: true, completion: nil)
+            tableView.setContentOffset(.zero, animated: true)
+        }
     }
 }

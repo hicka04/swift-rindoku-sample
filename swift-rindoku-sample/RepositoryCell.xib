@@ -15,12 +15,12 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RepositoryCell" customModule="swift_rindoku_sample" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Zo5-bq-rQA">
-                        <rect key="frame" x="20" y="0.0" width="280" height="44"/>
+                        <rect key="frame" x="20" y="0.0" width="280" height="44.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83S-Am-zbT">
                                 <rect key="frame" x="0.0" y="12" width="228" height="20.5"/>
@@ -29,7 +29,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ne-kg-e2m">
-                                <rect key="frame" x="236" y="0.0" width="44" height="44"/>
+                                <rect key="frame" x="236" y="0.0" width="44" height="44.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="2ne-kg-e2m" secondAttribute="height" multiplier="1:1" id="bx5-Sh-Kpb"/>
                                 </constraints>
@@ -45,6 +45,7 @@
                     </stackView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="Zo5-bq-rQA" secondAttribute="bottom" id="2R9-Ou-u5v"/>
                     <constraint firstItem="Zo5-bq-rQA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" symbolic="YES" id="EFx-Ob-pi3"/>
                     <constraint firstAttribute="trailing" secondItem="Zo5-bq-rQA" secondAttribute="trailing" constant="20" symbolic="YES" id="FO0-Ej-hrB"/>
                     <constraint firstItem="Zo5-bq-rQA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vN0-HL-Od8"/>

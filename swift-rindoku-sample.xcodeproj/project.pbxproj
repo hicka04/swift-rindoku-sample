@@ -28,8 +28,8 @@
 		9C62B1962165B0FF00B15B5C /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */; };
 		9C993F222178232D00D789B1 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C993F212178232D00D789B1 /* HTTPMethod.swift */; };
 		9C993F242178252F00D789B1 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C993F232178252F00D789B1 /* GitHubAPI.swift */; };
-		9CA20FA8215C7EEB0014433A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA20FA6215C7EEB0014433A /* DetailViewController.swift */; };
-		9CA20FA9215C7EEB0014433A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA20FA7215C7EEB0014433A /* DetailViewController.xib */; };
+		9CA20FA8215C7EEB0014433A /* RepositoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA20FA6215C7EEB0014433A /* RepositoryDetailViewController.swift */; };
+		9CA20FA9215C7EEB0014433A /* RepositoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA20FA7215C7EEB0014433A /* RepositoryDetailViewController.xib */; };
 		9CB98B5821C1FB040011182B /* SearchKeywordHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */; };
 		9CFAF0D121E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFAF0D021E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift */; };
 		9CFAF0D421E6F99100CB08E9 /* SearchKeywordHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFAF0D221E6F99100CB08E9 /* SearchKeywordHistoryCell.swift */; };
@@ -61,8 +61,8 @@
 		9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
 		9C993F212178232D00D789B1 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		9C993F232178252F00D789B1 /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
-		9CA20FA6215C7EEB0014433A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		9CA20FA7215C7EEB0014433A /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		9CA20FA6215C7EEB0014433A /* RepositoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewController.swift; sourceTree = "<group>"; };
+		9CA20FA7215C7EEB0014433A /* RepositoryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryDetailViewController.xib; sourceTree = "<group>"; };
 		9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistory.swift; sourceTree = "<group>"; };
 		9CFAF0D021E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistoryListViewController.swift; sourceTree = "<group>"; };
 		9CFAF0D221E6F99100CB08E9 /* SearchKeywordHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistoryCell.swift; sourceTree = "<group>"; };
@@ -120,8 +120,8 @@
 				17DFDD74211E7D840060A993 /* SearchResultListViewController.xib */,
 				171FB77B21F5A26000DF6837 /* BookmarkListViewController.swift */,
 				171FB77C21F5A26000DF6837 /* BookmarkListViewController.xib */,
-				9CA20FA6215C7EEB0014433A /* DetailViewController.swift */,
-				9CA20FA7215C7EEB0014433A /* DetailViewController.xib */,
+				9CA20FA6215C7EEB0014433A /* RepositoryDetailViewController.swift */,
+				9CA20FA7215C7EEB0014433A /* RepositoryDetailViewController.xib */,
 				9C62B1932165B0FF00B15B5C /* RepositoryCell.swift */,
 				9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */,
 				9CFAF0D021E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift */,
@@ -273,7 +273,7 @@
 				9CFAF0D521E6F99100CB08E9 /* SearchKeywordHistoryCell.xib in Resources */,
 				17DFDD75211E7D840060A993 /* SearchResultListViewController.xib in Resources */,
 				9C62B1962165B0FF00B15B5C /* RepositoryCell.xib in Resources */,
-				9CA20FA9215C7EEB0014433A /* DetailViewController.xib in Resources */,
+				9CA20FA9215C7EEB0014433A /* RepositoryDetailViewController.xib in Resources */,
 				171FB77E21F5A26000DF6837 /* BookmarkListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,7 +329,7 @@
 				9C042FF4216EF07800689273 /* GitHubClientError.swift in Sources */,
 				9C042FEF216EED4D00689273 /* SearchResponse.swift in Sources */,
 				9CB98B5821C1FB040011182B /* SearchKeywordHistory.swift in Sources */,
-				9CA20FA8215C7EEB0014433A /* DetailViewController.swift in Sources */,
+				9CA20FA8215C7EEB0014433A /* RepositoryDetailViewController.swift in Sources */,
 				9C993F222178232D00D789B1 /* HTTPMethod.swift in Sources */,
 				17DFDD65211E7BE40060A993 /* SearchResultListViewController.swift in Sources */,
 				17DFDD63211E7BE40060A993 /* AppDelegate.swift in Sources */,

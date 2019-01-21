@@ -148,7 +148,8 @@ extension SearchResultListViewController: UITableViewDelegate, UITableViewDataSo
         // 押されたセルの場所(indexPath)などに応じて処理を変えることができるが
         // 今回は必ずDetailViewControllerに遷移するように実装
         let repository = data[indexPath.row]
-        let detailView = DetailViewController(repository: repository)
+        let detailView = RepositoryDetailViewController(repository: repository)
+        detailView.hidesBottomBarWhenPushed = true
         
         // navigationController:画面遷移を司るクラス
         // pushViewController(_:animated:)で画面遷移できる

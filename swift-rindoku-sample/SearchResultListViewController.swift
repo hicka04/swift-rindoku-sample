@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SearchResultListViewController.swift
 //  swift-rindoku-sample
 //
 //  Created by hicka04 on 2018/08/11.
@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ListViewController: UIViewController {
+class SearchResultListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     private lazy var searchController: UISearchController = {
@@ -124,7 +124,7 @@ class ListViewController: UIViewController {
 
 // UITableViewDelegateとUITableViewDataSourceに準拠
 // extensionに切り出すと可読性が上がる
-extension ListViewController: UITableViewDelegate, UITableViewDataSource {
+extension SearchResultListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -156,7 +156,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ListViewController: UISearchBarDelegate {
+extension SearchResultListViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         defer {
@@ -173,14 +173,14 @@ extension ListViewController: UISearchBarDelegate {
     }
 }
 
-extension ListViewController: UISearchControllerDelegate {
+extension SearchResultListViewController: UISearchControllerDelegate {
     
     func didDismissSearchController(_ searchController: UISearchController) {
         searchController.searchBar.text = keyword
     }
 }
 
-extension ListViewController: SearchResultsControllerDelegate {
+extension SearchResultListViewController: SearchResultsControllerDelegate {
     
     func resultsController(_ resultsController: UIViewController,
                            didUpdateKeyword keyword: String,

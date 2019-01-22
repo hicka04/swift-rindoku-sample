@@ -16,23 +16,36 @@ class RepositoryCell: UITableViewCell {
     @IBOutlet private weak var repositoryNameLabel: UILabel!
     @IBOutlet private weak var bookmarkButton: UIButton!
     
+    private let realm = try! Realm()
+    private var notificationToken: NotificationToken?
+    
     private var repository: Repository? {
         didSet {
             guard let repository = repository else { return }
             
             repositoryNameLabel.text = repository.fullName
+            notificationToken = realm.objects(Bookmark.self)
+                .filter("id = %d", repository.id.rawValue)
+                .observe { change in
+                    switch change {
+                    case .update:
+                        self.updateBookmarkButtonImage()
+                    default:
+                        break
+                    }
+                }
+            
             updateBookmarkButtonImage()
         }
     }
     
     private var isBookmarked: Bool {
-        return try! Realm().objects(Bookmark.self).contains(where: { bookmark -> Bool in
+        return realm.objects(Bookmark.self).contains(where: { bookmark -> Bool in
             bookmark.repository == repository
         })
     }
     
     @IBAction private func bookmarkButtonDidTap() {
-        let realm = try! Realm()
         if isBookmarked {
             realm.objects(Bookmark.self)
                 .filter { bookmark -> Bool in
@@ -47,7 +60,6 @@ class RepositoryCell: UITableViewCell {
                 realm.add(Bookmark(repository: repository!))
             }
         }
-        updateBookmarkButtonImage()
     }
     
     func set(repository: Repository) {
@@ -56,5 +68,9 @@ class RepositoryCell: UITableViewCell {
     
     private func updateBookmarkButtonImage() {
         bookmarkButton.setImage(isBookmarked ? #imageLiteral(resourceName: "bookmark"): #imageLiteral(resourceName: "bookmark_border"), for: .normal)
+    }
+    
+    deinit {
+        notificationToken?.invalidate()
     }
 }

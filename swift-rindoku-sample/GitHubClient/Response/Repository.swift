@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Repository: Decodable {
+struct Repository: Codable {
     
-    let id: Int
+    let id: ID
     let name: String
     let fullName: String  // 詳細ページ表示用に追加
     let htmlUrl: String
@@ -22,5 +22,19 @@ struct Repository: Decodable {
         case fullName = "full_name"
         case htmlUrl = "html_url"
         case owner
+    }
+}
+
+extension Repository {
+    
+    struct ID: Codable, RawRepresentable {
+        let rawValue: Int
+    }
+}
+
+extension Repository: Equatable {
+    
+    static func == (lhs: Repository, rhs: Repository) -> Bool {
+        return lhs.id == rhs.id
     }
 }

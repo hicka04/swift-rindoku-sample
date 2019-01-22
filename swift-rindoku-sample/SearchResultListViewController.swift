@@ -139,7 +139,7 @@ extension SearchResultListViewController: UITableViewDelegate, UITableViewDataSo
         // viewDidLoadで登録しておいたセルを取得
         // カスタムセルを取り出すときはキャストが必要(強制案ラップでOK)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RepositoryCell
-        cell.set(repositoryName: data[indexPath.row].fullName)
+        cell.set(repository: data[indexPath.row])
         return cell
     }
     

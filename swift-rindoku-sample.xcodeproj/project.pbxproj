@@ -10,6 +10,7 @@
 		171FB77D21F5A26000DF6837 /* BookmarkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171FB77B21F5A26000DF6837 /* BookmarkListViewController.swift */; };
 		171FB77E21F5A26000DF6837 /* BookmarkListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171FB77C21F5A26000DF6837 /* BookmarkListViewController.xib */; };
 		171FB78021F5A2F900DF6837 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171FB77F21F5A2F900DF6837 /* TabBarController.swift */; };
+		175864FA21F5C2E3006F7FB2 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175864F921F5C2E3006F7FB2 /* Bookmark.swift */; };
 		17DFDD63211E7BE40060A993 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFDD62211E7BE40060A993 /* AppDelegate.swift */; };
 		17DFDD65211E7BE40060A993 /* SearchResultListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFDD64211E7BE40060A993 /* SearchResultListViewController.swift */; };
 		17DFDD6A211E7BF10060A993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DFDD69211E7BF10060A993 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 		171FB77B21F5A26000DF6837 /* BookmarkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkListViewController.swift; sourceTree = "<group>"; };
 		171FB77C21F5A26000DF6837 /* BookmarkListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkListViewController.xib; sourceTree = "<group>"; };
 		171FB77F21F5A2F900DF6837 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		175864F921F5C2E3006F7FB2 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		17DFDD5F211E7BE40060A993 /* swift-rindoku-sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-rindoku-sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17DFDD62211E7BE40060A993 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17DFDD64211E7BE40060A993 /* SearchResultListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 				9C03347B21A64B420092795A /* UIAlertController+extension.swift */,
 			);
 			path = extension;
+			sourceTree = "<group>";
+		};
+		175864F821F5C2D3006F7FB2 /* Bookmark */ = {
+			isa = PBXGroup;
+			children = (
+				175864F921F5C2E3006F7FB2 /* Bookmark.swift */,
+			);
+			path = Bookmark;
 			sourceTree = "<group>";
 		};
 		17DFDD56211E7BE40060A993 = {
@@ -194,6 +204,7 @@
 		9CB98B5521C1FABB0011182B /* entities */ = {
 			isa = PBXGroup;
 			children = (
+				175864F821F5C2D3006F7FB2 /* Bookmark */,
 				9CB98B5621C1FAC70011182B /* SearchKeywordHistory */,
 			);
 			path = entities;
@@ -341,6 +352,7 @@
 				9C042FF7216EF2D700689273 /* GitHubRequest.swift in Sources */,
 				171FB77D21F5A26000DF6837 /* BookmarkListViewController.swift in Sources */,
 				9C62B1952165B0FF00B15B5C /* RepositoryCell.swift in Sources */,
+				175864FA21F5C2E3006F7FB2 /* Bookmark.swift in Sources */,
 				9CFAF0D421E6F99100CB08E9 /* SearchKeywordHistoryCell.swift in Sources */,
 				9C042FF2216EEFDF00689273 /* GitHubAPIError.swift in Sources */,
 				9C042FED216EE9C200689273 /* Repository.swift in Sources */,

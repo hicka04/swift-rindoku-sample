@@ -8,35 +8,55 @@
 
 import UIKit
 import WebKit
+import RealmSwift
 
 class RepositoryDetailViewController: UIViewController {
     
     // iOS10未満を対応しているアプリで
     // WKWebViewをXibで配置するとクラッシュするので注意(バグです)
     @IBOutlet private weak var webView: WKWebView!
+    
+    private let realm = try! Realm()
+    
     private let repository: Repository
-    private var isBookmarked: Bool = false {
-        didSet {
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: isBookmarked ? #imageLiteral(resourceName: "bookmark") : #imageLiteral(resourceName: "bookmark_border"),
-                                                                style: .plain,
-                                                                target: self,
-                                                                action: #selector(bookmarkButtonDidTap))
-        }
+    
+    private var isBookmarked: Bool {
+        return realm.objects(Bookmark.self).contains(where: { bookmark -> Bool in
+            bookmark.repository == repository
+        })
     }
+    
+    private var notificationToken: NotificationToken?
     
     init(repository: Repository) {
         self.repository = repository
         
         super.init(nibName: nil, bundle: nil)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: isBookmarked ? #imageLiteral(resourceName: "bookmark") : #imageLiteral(resourceName: "bookmark_border"),
-                                                            style: .plain,
-                                                            target: self,
-                                                            action: #selector(bookmarkButtonDidTap))
+        
+        notificationToken = realm.objects(Bookmark.self)
+            .filter("id = %d", repository.id.rawValue)
+            .observe { [weak self] change in
+                guard let `self` = self else { return }
+                
+                switch change {
+                case .initial, .update:
+                    self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.isBookmarked ? #imageLiteral(resourceName: "bookmark") : #imageLiteral(resourceName: "bookmark_border"),
+                                                                             style: .plain,
+                                                                             target: self,
+                                                                             action: #selector(self.bookmarkButtonDidTap))
+                default:
+                    break
+                }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        notificationToken?.invalidate()
     }
     
     override func viewDidLoad() {
@@ -49,6 +69,19 @@ class RepositoryDetailViewController: UIViewController {
     }
     
     @objc private func bookmarkButtonDidTap() {
-        isBookmarked.toggle()
+        if isBookmarked {
+            realm.objects(Bookmark.self)
+                .filter { bookmark -> Bool in
+                    bookmark.repository == self.repository
+                }.forEach { bookmark in
+                    try! realm.write {
+                        realm.delete(bookmark)
+                    }
+            }
+        } else {
+            try! realm.write {
+                realm.add(Bookmark(repository: repository))
+            }
+        }
     }
 }

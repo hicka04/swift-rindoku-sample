@@ -23,6 +23,7 @@ class BookmarkListViewController: UIViewController {
                 switch change {
                 case .initial:
                     tableView.reloadData()
+                    tableView.flashScrollIndicators()
                 case .update(_, let deletions, let insertions, let modifications):
                     tableView.beginUpdates()
                     tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) },

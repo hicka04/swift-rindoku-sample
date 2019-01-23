@@ -77,6 +77,8 @@ class SearchResultListViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                
+                self.tableView.flashScrollIndicators()
             }
         }
     }

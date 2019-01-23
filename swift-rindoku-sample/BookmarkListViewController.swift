@@ -55,6 +55,14 @@ class BookmarkListViewController: UIViewController {
         
         title = "bookmarks"
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
 }
 
 extension BookmarkListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -71,5 +79,12 @@ extension BookmarkListViewController: UITableViewDelegate, UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RepositoryCell
         cell.set(repository: bookmarks[indexPath.row].repository)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let repository = bookmarks[indexPath.row].repository!
+        let detailView = RepositoryDetailViewController(repository: repository)
+        detailView.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(detailView, animated: true)
     }
 }

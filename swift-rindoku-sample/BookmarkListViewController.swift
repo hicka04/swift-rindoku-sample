@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class BookmarkListViewController: UIViewController {
     
@@ -16,7 +17,37 @@ class BookmarkListViewController: UIViewController {
             tableView.dataSource = self
             
             tableView.register(UINib(nibName: "RepositoryCell", bundle: nil), forCellReuseIdentifier: "cell")
+            
+            notificationToken = bookmarks.observe { [weak self] change in
+                guard let tableView = self?.tableView else { return }
+                switch change {
+                case .initial:
+                    tableView.reloadData()
+                case .update(_, let deletions, let insertions, let modifications):
+                    tableView.beginUpdates()
+                    tableView.deleteRows(at: deletions.map { IndexPath(row: $0, section: 0) },
+                                         with: .automatic)
+                    tableView.insertRows(at: insertions.map { IndexPath(row: $0, section: 0) },
+                                         with: .automatic)
+                    tableView.reloadRows(at: modifications.map { IndexPath(row: $0, section: 0) },
+                                         with: .automatic)
+                    tableView.endUpdates()
+                case .error:
+                    break
+                }
+            }
         }
+    }
+    
+    private var notificationToken: NotificationToken?
+    
+    private var bookmarks: Results<Bookmark> {
+        let realm = try! Realm()
+        return realm.objects(Bookmark.self).sorted(byKeyPath: "bookmarkedAt", ascending: false)
+    }
+    
+    deinit {
+        notificationToken?.invalidate()
     }
 
     override func viewDidLoad() {
@@ -33,10 +64,12 @@ extension BookmarkListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return bookmarks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RepositoryCell
+        cell.set(repository: bookmarks[indexPath.row].repository)
+        return cell
     }
 }

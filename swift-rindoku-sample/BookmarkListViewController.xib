@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BookmarkListViewController" customModule="swift_rindoku_sample" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="gjT-ON-hXo" id="uD7-B8-UND"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

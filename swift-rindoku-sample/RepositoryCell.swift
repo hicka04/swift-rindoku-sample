@@ -26,10 +26,10 @@ class RepositoryCell: UITableViewCell {
             repositoryNameLabel.text = repository.fullName
             notificationToken = realm.objects(Bookmark.self)
                 .filter("id = %d", repository.id.rawValue)
-                .observe { change in
+                .observe { [weak self] change in
                     switch change {
                     case .update:
-                        self.updateBookmarkButtonImage()
+                        self?.updateBookmarkButtonImage()
                     default:
                         break
                     }

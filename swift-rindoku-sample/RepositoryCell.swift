@@ -25,7 +25,7 @@ class RepositoryCell: UITableViewCell {
             
             repositoryNameLabel.text = repository.fullName
             notificationToken = realm.objects(Bookmark.self)
-                .filter("id = %d", repository.id.rawValue)
+                .filter("repository.id = %d", repository.id)
                 .observe { [weak self] change in
                     switch change {
                     case .update:
@@ -41,7 +41,7 @@ class RepositoryCell: UITableViewCell {
     
     private var isBookmarked: Bool {
         return realm.objects(Bookmark.self).contains(where: { bookmark -> Bool in
-            bookmark.repository == repository
+            bookmark.repository.id == repository!.id
         })
     }
     
@@ -49,7 +49,7 @@ class RepositoryCell: UITableViewCell {
         if isBookmarked {
             realm.objects(Bookmark.self)
                 .filter { bookmark -> Bool in
-                    bookmark.repository == self.repository
+                    bookmark.repository.id == self.repository?.id
                 }.forEach { bookmark in
                     try! realm.write {
                         realm.delete(bookmark)

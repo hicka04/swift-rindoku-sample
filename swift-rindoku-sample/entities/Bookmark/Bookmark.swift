@@ -11,19 +11,8 @@ import RealmSwift
 
 class Bookmark: Object {
     
-    @objc dynamic private var id: Repository.ID.RawValue = 0
-    @objc dynamic private var data: Data = .init()
+    @objc dynamic private(set) var repository: Repository!
     @objc dynamic private var bookmarkedAt: Date = .init()
-    
-    private(set) var repository: Repository! {
-        set {
-            data = try! JSONEncoder().encode(newValue)
-            id = newValue.id.rawValue
-        }
-        get {
-            return try! JSONDecoder().decode(Repository.self, from: data)
-        }
-    }
     
     convenience init(repository: Repository) {
         self.init()

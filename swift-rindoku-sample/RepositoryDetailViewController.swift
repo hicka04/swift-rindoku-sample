@@ -22,7 +22,7 @@ class RepositoryDetailViewController: UIViewController {
     
     private var isBookmarked: Bool {
         return realm.objects(Bookmark.self).contains(where: { bookmark -> Bool in
-            bookmark.repository == repository
+            bookmark.repository.id == repository.id
         })
     }
     
@@ -35,10 +35,10 @@ class RepositoryDetailViewController: UIViewController {
         
         
         notificationToken = realm.objects(Bookmark.self)
-            .filter("id = %d", repository.id.rawValue)
+            .filter("repository.id = %d", repository.id)
             .observe { [weak self] change in
                 guard let `self` = self else { return }
-                
+
                 switch change {
                 case .initial, .update:
                     self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: self.isBookmarked ? #imageLiteral(resourceName: "bookmark") : #imageLiteral(resourceName: "bookmark_border"),
@@ -72,12 +72,12 @@ class RepositoryDetailViewController: UIViewController {
         if isBookmarked {
             realm.objects(Bookmark.self)
                 .filter { bookmark -> Bool in
-                    bookmark.repository == self.repository
+                    bookmark.repository.id == self.repository.id
                 }.forEach { bookmark in
                     try! realm.write {
                         realm.delete(bookmark)
                     }
-            }
+                }
         } else {
             try! realm.write {
                 realm.add(Bookmark(repository: repository))

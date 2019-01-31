@@ -44,7 +44,15 @@ class BookmarkListViewController: UIViewController {
     
     private var bookmarks: Results<Bookmark> {
         let realm = try! Realm()
-        return realm.objects(Bookmark.self).sorted(byKeyPath: "bookmarkedAt", ascending: false)
+        return realm.objects(Bookmark.self).sorted(byKeyPath: sort.rawValue, ascending: sort.isAscending)
+    }
+    
+    private var sort: Sort = .bookmarkedAt {
+        didSet {
+            tableView.reloadData()
+            
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: sort.title, style: .plain, target: self, action: #selector(sortButtonDidTap))
+        }
     }
     
     deinit {
@@ -55,6 +63,8 @@ class BookmarkListViewController: UIViewController {
         super.viewDidLoad()
         
         title = "bookmarks"
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: sort.title, style: .plain, target: self, action: #selector(sortButtonDidTap))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +73,22 @@ class BookmarkListViewController: UIViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+    
+    @objc private func sortButtonDidTap() {
+        let actionSheet = UIAlertController(title: "ソート", message: nil, preferredStyle: .actionSheet)
+        Sort.allCases.forEach { sort in
+            let action = UIAlertAction(title: sort.title, style: .default) { _ in
+                self.sort = sort
+            }
+            if self.sort == sort {
+                action.setValue(true, forKey: "checked")
+            }
+            actionSheet.addAction(action)
+        }
+        actionSheet.addAction(UIAlertAction(title: "キャンセル", style: .cancel, handler: nil))
+        
+        present(actionSheet, animated: true, completion: nil)
     }
 }
 
@@ -87,5 +113,27 @@ extension BookmarkListViewController: UITableViewDelegate, UITableViewDataSource
         let detailView = RepositoryDetailViewController(repository: repository)
         detailView.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(detailView, animated: true)
+    }
+}
+
+extension BookmarkListViewController {
+    
+    enum Sort: String, CaseIterable {
+        case bookmarkedAt
+        case repositoryName = "repository.fullName"
+        
+        var title: String {
+            switch self {
+            case .bookmarkedAt:   return "追加順"
+            case .repositoryName: return "リポジトリ名順"
+            }
+        }
+        
+        var isAscending: Bool {
+            switch self {
+            case .bookmarkedAt:   return false
+            case .repositoryName: return true
+            }
+        }
     }
 }

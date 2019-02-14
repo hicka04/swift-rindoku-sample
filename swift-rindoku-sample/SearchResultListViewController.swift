@@ -141,7 +141,7 @@ extension SearchResultListViewController: UITableViewDelegate, UITableViewDataSo
         // viewDidLoadで登録しておいたセルを取得
         // カスタムセルを取り出すときはキャストが必要(強制案ラップでOK)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RepositoryCell
-        cell.set(repository: data[indexPath.row])
+        cell.set(repository: data[indexPath.row], delegate: self)
         return cell
     }
     
@@ -193,6 +193,36 @@ extension SearchResultListViewController: SearchResultsControllerDelegate {
             self.keyword = keyword
             searchController.dismiss(animated: true, completion: nil)
             tableView.setContentOffset(.zero, animated: true)
+        }
+    }
+}
+
+extension SearchResultListViewController: RepositoryCellDelegate {
+    
+    func repositoryCell(_ cell: RepositoryCell, didTapBookmarkButtonFrom repository: Repository) {
+        if realm.objects(Bookmark.self).contains(where: { bookmark in bookmark.repository.id == repository.id }) {
+            realm.objects(Bookmark.self)
+                .filter { bookmark -> Bool in
+                    bookmark.repository.id == repository.id
+                }.forEach { bookmark in
+                    try! realm.write {
+                        realm.delete(bookmark)
+                    }
+                }
+        } else {
+            guard realm.objects(Bookmark.self).count < 50 else {
+                let alert = UIAlertController(title: "エラー",
+                                              message: "ブックマークは50件までです",
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+                
+                return
+            }
+            
+            try! realm.write {
+                realm.add(Bookmark(repository: repository))
+            }
         }
     }
 }

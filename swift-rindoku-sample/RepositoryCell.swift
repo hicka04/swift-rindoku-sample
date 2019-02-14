@@ -9,6 +9,11 @@
 import UIKit
 import RealmSwift
 
+protocol RepositoryCellDelegate: AnyObject {
+    
+    func repositoryCell(_ cell: RepositoryCell, didTapBookmarkButtonFrom repository: Repository)
+}
+
 class RepositoryCell: UITableViewCell {
 
     // カスタムViewの中に置いているSubViewはprivateにするのがおすすめ
@@ -24,50 +29,34 @@ class RepositoryCell: UITableViewCell {
             guard let repository = repository else { return }
             
             repositoryNameLabel.text = repository.fullName
-            notificationToken = realm.objects(Bookmark.self)
-                .filter("repository.id = %d", repository.id)
-                .observe { [weak self] change in
-                    switch change {
-                    case .update:
-                        self?.updateBookmarkButtonImage()
-                    default:
-                        break
-                    }
-                }
             
-            updateBookmarkButtonImage()
+            let bookmarks = realm.objects(Bookmark.self)
+                                .filter("repository.id = %d", repository.id)
+            let setBookmarkImage = { (bookmarks: Results<Bookmark>) in
+                self.bookmarkButton.setImage(bookmarks.isEmpty ? #imageLiteral(resourceName: "bookmark_border"): #imageLiteral(resourceName: "bookmark"), for: .normal)
+            }
+            notificationToken = bookmarks.observe { change in
+                switch change {
+                case .update(let bookmarks, _, _, _):
+                    setBookmarkImage(bookmarks)
+                default:
+                    break
+                }
+            }
+            
+            setBookmarkImage(bookmarks)
         }
     }
     
-    private var isBookmarked: Bool {
-        return realm.objects(Bookmark.self).contains(where: { bookmark -> Bool in
-            bookmark.repository.id == repository!.id
-        })
-    }
+    private weak var delegate: RepositoryCellDelegate?
     
     @IBAction private func bookmarkButtonDidTap() {
-        if isBookmarked {
-            realm.objects(Bookmark.self)
-                .filter { bookmark -> Bool in
-                    bookmark.repository.id == self.repository?.id
-                }.forEach { bookmark in
-                    try! realm.write {
-                        realm.delete(bookmark)
-                    }
-                }
-        } else {
-            try! realm.write {
-                realm.add(Bookmark(repository: repository!))
-            }
-        }
+        delegate?.repositoryCell(self, didTapBookmarkButtonFrom: repository!)
     }
     
-    func set(repository: Repository) {
+    func set(repository: Repository, delegate: RepositoryCellDelegate) {
         self.repository = repository
-    }
-    
-    private func updateBookmarkButtonImage() {
-        bookmarkButton.setImage(isBookmarked ? #imageLiteral(resourceName: "bookmark"): #imageLiteral(resourceName: "bookmark_border"), for: .normal)
+        self.delegate = delegate
     }
     
     deinit {

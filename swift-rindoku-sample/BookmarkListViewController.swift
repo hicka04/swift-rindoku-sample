@@ -42,8 +42,8 @@ class BookmarkListViewController: UIViewController {
     
     private var notificationToken: NotificationToken?
     
+    private let realm = try! Realm()
     private var bookmarks: Results<Bookmark> {
-        let realm = try! Realm()
         return realm.objects(Bookmark.self).sorted(byKeyPath: sort.rawValue, ascending: sort.isAscending)
     }
     
@@ -104,7 +104,7 @@ extension BookmarkListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RepositoryCell
-        cell.set(repository: bookmarks[indexPath.row].repository)
+        cell.set(repository: bookmarks[indexPath.row].repository, delegate: self)
         return cell
     }
     
@@ -134,6 +134,21 @@ extension BookmarkListViewController {
             case .bookmarkedAt:   return false
             case .repositoryName: return true
             }
+        }
+    }
+}
+
+extension BookmarkListViewController: RepositoryCellDelegate {
+    
+    func repositoryCell(_ cell: RepositoryCell, didTapBookmarkButtonFrom repository: Repository) {
+        // ブックマーク一覧では削除のみを想定
+        realm.objects(Bookmark.self)
+            .filter { bookmark -> Bool in
+                bookmark.repository.id == repository.id
+            }.forEach { bookmark in
+                try! realm.write {
+                    realm.delete(bookmark)
+                }
         }
     }
 }

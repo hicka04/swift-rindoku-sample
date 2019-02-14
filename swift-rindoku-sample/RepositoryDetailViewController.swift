@@ -79,6 +79,11 @@ class RepositoryDetailViewController: UIViewController {
                     }
                 }
         } else {
+            guard realm.objects(Bookmark.self).count < 50 else {
+                present(UIAlertController.createBookmarkLimitAlert(), animated: true, completion: nil)
+                return
+            }
+            
             try! realm.write {
                 realm.add(Bookmark(repository: repository))
             }

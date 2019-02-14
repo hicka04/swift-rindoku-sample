@@ -211,12 +211,7 @@ extension SearchResultListViewController: RepositoryCellDelegate {
                 }
         } else {
             guard realm.objects(Bookmark.self).count < 50 else {
-                let alert = UIAlertController(title: "エラー",
-                                              message: "ブックマークは50件までです",
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
-                
+                present(UIAlertController.createBookmarkLimitAlert(), animated: true, completion: nil)
                 return
             }
             

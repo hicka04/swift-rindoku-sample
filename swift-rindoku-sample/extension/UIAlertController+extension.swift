@@ -22,4 +22,12 @@ extension UIAlertController {
         
         return alert
     }
+    
+    static func createBookmarkLimitAlert() -> UIAlertController {
+        let alert = UIAlertController(title: "エラー",
+                                      message: "ブックマークは50件までです",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        return alert
+    }
 }

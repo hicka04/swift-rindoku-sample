@@ -7,16 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		171FB77D21F5A26000DF6837 /* BookmarkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171FB77B21F5A26000DF6837 /* BookmarkListViewController.swift */; };
-		171FB77E21F5A26000DF6837 /* BookmarkListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 171FB77C21F5A26000DF6837 /* BookmarkListViewController.xib */; };
-		171FB78021F5A2F900DF6837 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171FB77F21F5A2F900DF6837 /* TabBarController.swift */; };
-		175864FA21F5C2E3006F7FB2 /* Bookmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175864F921F5C2E3006F7FB2 /* Bookmark.swift */; };
 		17DFDD63211E7BE40060A993 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFDD62211E7BE40060A993 /* AppDelegate.swift */; };
-		17DFDD65211E7BE40060A993 /* SearchResultListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFDD64211E7BE40060A993 /* SearchResultListViewController.swift */; };
+		17DFDD65211E7BE40060A993 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17DFDD64211E7BE40060A993 /* ListViewController.swift */; };
 		17DFDD6A211E7BF10060A993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 17DFDD69211E7BF10060A993 /* Assets.xcassets */; };
 		17DFDD6D211E7BF10060A993 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17DFDD6B211E7BF10060A993 /* LaunchScreen.storyboard */; };
-		17DFDD75211E7D840060A993 /* SearchResultListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DFDD74211E7D840060A993 /* SearchResultListViewController.xib */; };
-		250A5FA3B5F55501224D3004 /* Pods_swift_rindoku_sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33EEFAEAA51DB81E66F8798E /* Pods_swift_rindoku_sample.framework */; };
+		17DFDD75211E7D840060A993 /* ListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 17DFDD74211E7D840060A993 /* ListViewController.xib */; };
 		9C03347C21A64B420092795A /* UIAlertController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C03347B21A64B420092795A /* UIAlertController+extension.swift */; };
 		9C042FEB216EE9B700689273 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C042FEA216EE9B700689273 /* User.swift */; };
 		9C042FED216EE9C200689273 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C042FEC216EE9C200689273 /* Repository.swift */; };
@@ -29,28 +24,18 @@
 		9C62B1962165B0FF00B15B5C /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */; };
 		9C993F222178232D00D789B1 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C993F212178232D00D789B1 /* HTTPMethod.swift */; };
 		9C993F242178252F00D789B1 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C993F232178252F00D789B1 /* GitHubAPI.swift */; };
-		9CA20FA8215C7EEB0014433A /* RepositoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA20FA6215C7EEB0014433A /* RepositoryDetailViewController.swift */; };
-		9CA20FA9215C7EEB0014433A /* RepositoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA20FA7215C7EEB0014433A /* RepositoryDetailViewController.xib */; };
-		9CB98B5821C1FB040011182B /* SearchKeywordHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */; };
-		9CFAF0D121E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFAF0D021E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift */; };
-		9CFAF0D421E6F99100CB08E9 /* SearchKeywordHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFAF0D221E6F99100CB08E9 /* SearchKeywordHistoryCell.swift */; };
-		9CFAF0D521E6F99100CB08E9 /* SearchKeywordHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CFAF0D321E6F99100CB08E9 /* SearchKeywordHistoryCell.xib */; };
+		9CA20FA8215C7EEB0014433A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA20FA6215C7EEB0014433A /* DetailViewController.swift */; };
+		9CA20FA9215C7EEB0014433A /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA20FA7215C7EEB0014433A /* DetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		171FB77B21F5A26000DF6837 /* BookmarkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkListViewController.swift; sourceTree = "<group>"; };
-		171FB77C21F5A26000DF6837 /* BookmarkListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookmarkListViewController.xib; sourceTree = "<group>"; };
-		171FB77F21F5A2F900DF6837 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		175864F921F5C2E3006F7FB2 /* Bookmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bookmark.swift; sourceTree = "<group>"; };
 		17DFDD5F211E7BE40060A993 /* swift-rindoku-sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swift-rindoku-sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		17DFDD62211E7BE40060A993 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		17DFDD64211E7BE40060A993 /* SearchResultListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListViewController.swift; sourceTree = "<group>"; };
+		17DFDD64211E7BE40060A993 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		17DFDD69211E7BF10060A993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		17DFDD6C211E7BF10060A993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		17DFDD6E211E7BF10060A993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		17DFDD74211E7D840060A993 /* SearchResultListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultListViewController.xib; sourceTree = "<group>"; };
-		19D6C5CF63609B03A6BCCE1F /* Pods-swift-rindoku-sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-rindoku-sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-swift-rindoku-sample/Pods-swift-rindoku-sample.debug.xcconfig"; sourceTree = "<group>"; };
-		33EEFAEAA51DB81E66F8798E /* Pods_swift_rindoku_sample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swift_rindoku_sample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		17DFDD74211E7D840060A993 /* ListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListViewController.xib; sourceTree = "<group>"; };
 		9C03347B21A64B420092795A /* UIAlertController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+extension.swift"; sourceTree = "<group>"; };
 		9C042FEA216EE9B700689273 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9C042FEC216EE9C200689273 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -63,13 +48,8 @@
 		9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
 		9C993F212178232D00D789B1 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		9C993F232178252F00D789B1 /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
-		9CA20FA6215C7EEB0014433A /* RepositoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewController.swift; sourceTree = "<group>"; };
-		9CA20FA7215C7EEB0014433A /* RepositoryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryDetailViewController.xib; sourceTree = "<group>"; };
-		9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistory.swift; sourceTree = "<group>"; };
-		9CFAF0D021E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistoryListViewController.swift; sourceTree = "<group>"; };
-		9CFAF0D221E6F99100CB08E9 /* SearchKeywordHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistoryCell.swift; sourceTree = "<group>"; };
-		9CFAF0D321E6F99100CB08E9 /* SearchKeywordHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchKeywordHistoryCell.xib; sourceTree = "<group>"; };
-		D3012A001AF9E22815FABFFA /* Pods-swift-rindoku-sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swift-rindoku-sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-swift-rindoku-sample/Pods-swift-rindoku-sample.release.xcconfig"; sourceTree = "<group>"; };
+		9CA20FA6215C7EEB0014433A /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		9CA20FA7215C7EEB0014433A /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,36 +57,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				250A5FA3B5F55501224D3004 /* Pods_swift_rindoku_sample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		171FB78121F5A40A00DF6837 /* extension */ = {
-			isa = PBXGroup;
-			children = (
-				9C03347B21A64B420092795A /* UIAlertController+extension.swift */,
-			);
-			path = extension;
-			sourceTree = "<group>";
-		};
-		175864F821F5C2D3006F7FB2 /* Bookmark */ = {
-			isa = PBXGroup;
-			children = (
-				175864F921F5C2E3006F7FB2 /* Bookmark.swift */,
-			);
-			path = Bookmark;
-			sourceTree = "<group>";
-		};
 		17DFDD56211E7BE40060A993 = {
 			isa = PBXGroup;
 			children = (
 				17DFDD61211E7BE40060A993 /* swift-rindoku-sample */,
 				17DFDD60211E7BE40060A993 /* Products */,
-				6EAD741DB4E569580E3797ED /* Pods */,
-				3648E28CA4C9EABFE1818360 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,44 +82,20 @@
 		17DFDD61211E7BE40060A993 /* swift-rindoku-sample */ = {
 			isa = PBXGroup;
 			children = (
-				171FB78121F5A40A00DF6837 /* extension */,
-				9CB98B5521C1FABB0011182B /* entities */,
 				9C042FE8216EE97300689273 /* GitHubClient */,
 				17DFDD62211E7BE40060A993 /* AppDelegate.swift */,
-				171FB77F21F5A2F900DF6837 /* TabBarController.swift */,
-				17DFDD64211E7BE40060A993 /* SearchResultListViewController.swift */,
-				17DFDD74211E7D840060A993 /* SearchResultListViewController.xib */,
-				171FB77B21F5A26000DF6837 /* BookmarkListViewController.swift */,
-				171FB77C21F5A26000DF6837 /* BookmarkListViewController.xib */,
-				9CA20FA6215C7EEB0014433A /* RepositoryDetailViewController.swift */,
-				9CA20FA7215C7EEB0014433A /* RepositoryDetailViewController.xib */,
-				9C62B1932165B0FF00B15B5C /* RepositoryCell.swift */,
-				9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */,
-				9CFAF0D021E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift */,
-				9CFAF0D221E6F99100CB08E9 /* SearchKeywordHistoryCell.swift */,
-				9CFAF0D321E6F99100CB08E9 /* SearchKeywordHistoryCell.xib */,
+				17DFDD64211E7BE40060A993 /* ListViewController.swift */,
+				17DFDD74211E7D840060A993 /* ListViewController.xib */,
+				9CA20FA6215C7EEB0014433A /* DetailViewController.swift */,
+				9CA20FA7215C7EEB0014433A /* DetailViewController.xib */,
 				17DFDD69211E7BF10060A993 /* Assets.xcassets */,
 				17DFDD6B211E7BF10060A993 /* LaunchScreen.storyboard */,
 				17DFDD6E211E7BF10060A993 /* Info.plist */,
+				9C62B1932165B0FF00B15B5C /* RepositoryCell.swift */,
+				9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */,
+				9C03347B21A64B420092795A /* UIAlertController+extension.swift */,
 			);
 			path = "swift-rindoku-sample";
-			sourceTree = "<group>";
-		};
-		3648E28CA4C9EABFE1818360 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				33EEFAEAA51DB81E66F8798E /* Pods_swift_rindoku_sample.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6EAD741DB4E569580E3797ED /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				19D6C5CF63609B03A6BCCE1F /* Pods-swift-rindoku-sample.debug.xcconfig */,
-				D3012A001AF9E22815FABFFA /* Pods-swift-rindoku-sample.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		9C042FE8216EE97300689273 /* GitHubClient */ = {
@@ -201,23 +138,6 @@
 			path = Request;
 			sourceTree = "<group>";
 		};
-		9CB98B5521C1FABB0011182B /* entities */ = {
-			isa = PBXGroup;
-			children = (
-				175864F821F5C2D3006F7FB2 /* Bookmark */,
-				9CB98B5621C1FAC70011182B /* SearchKeywordHistory */,
-			);
-			path = entities;
-			sourceTree = "<group>";
-		};
-		9CB98B5621C1FAC70011182B /* SearchKeywordHistory */ = {
-			isa = PBXGroup;
-			children = (
-				9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */,
-			);
-			path = SearchKeywordHistory;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -225,11 +145,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 17DFDD71211E7BF10060A993 /* Build configuration list for PBXNativeTarget "swift-rindoku-sample" */;
 			buildPhases = (
-				AC439E32531180ADBAA569B3 /* [CP] Check Pods Manifest.lock */,
 				17DFDD5B211E7BE40060A993 /* Sources */,
 				17DFDD5C211E7BE40060A993 /* Frameworks */,
 				17DFDD5D211E7BE40060A993 /* Resources */,
-				BF2460512D5285A9790AA020 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,56 +199,13 @@
 			files = (
 				17DFDD6D211E7BF10060A993 /* LaunchScreen.storyboard in Resources */,
 				17DFDD6A211E7BF10060A993 /* Assets.xcassets in Resources */,
-				9CFAF0D521E6F99100CB08E9 /* SearchKeywordHistoryCell.xib in Resources */,
-				17DFDD75211E7D840060A993 /* SearchResultListViewController.xib in Resources */,
+				17DFDD75211E7D840060A993 /* ListViewController.xib in Resources */,
 				9C62B1962165B0FF00B15B5C /* RepositoryCell.xib in Resources */,
-				9CA20FA9215C7EEB0014433A /* RepositoryDetailViewController.xib in Resources */,
-				171FB77E21F5A26000DF6837 /* BookmarkListViewController.xib in Resources */,
+				9CA20FA9215C7EEB0014433A /* DetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		AC439E32531180ADBAA569B3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-swift-rindoku-sample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BF2460512D5285A9790AA020 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-swift-rindoku-sample/Pods-swift-rindoku-sample-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-swift-rindoku-sample/Pods-swift-rindoku-sample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		17DFDD5B211E7BE40060A993 /* Sources */ = {
@@ -339,24 +214,18 @@
 			files = (
 				9C042FF4216EF07800689273 /* GitHubClientError.swift in Sources */,
 				9C042FEF216EED4D00689273 /* SearchResponse.swift in Sources */,
-				9CB98B5821C1FB040011182B /* SearchKeywordHistory.swift in Sources */,
-				9CA20FA8215C7EEB0014433A /* RepositoryDetailViewController.swift in Sources */,
+				9CA20FA8215C7EEB0014433A /* DetailViewController.swift in Sources */,
 				9C993F222178232D00D789B1 /* HTTPMethod.swift in Sources */,
-				17DFDD65211E7BE40060A993 /* SearchResultListViewController.swift in Sources */,
+				17DFDD65211E7BE40060A993 /* ListViewController.swift in Sources */,
 				17DFDD63211E7BE40060A993 /* AppDelegate.swift in Sources */,
 				9C03347C21A64B420092795A /* UIAlertController+extension.swift in Sources */,
 				9C23A87B2181625C00C72BBF /* GitHubClient.swift in Sources */,
 				9C042FEB216EE9B700689273 /* User.swift in Sources */,
-				171FB78021F5A2F900DF6837 /* TabBarController.swift in Sources */,
 				9C993F242178252F00D789B1 /* GitHubAPI.swift in Sources */,
 				9C042FF7216EF2D700689273 /* GitHubRequest.swift in Sources */,
-				171FB77D21F5A26000DF6837 /* BookmarkListViewController.swift in Sources */,
 				9C62B1952165B0FF00B15B5C /* RepositoryCell.swift in Sources */,
-				175864FA21F5C2E3006F7FB2 /* Bookmark.swift in Sources */,
-				9CFAF0D421E6F99100CB08E9 /* SearchKeywordHistoryCell.swift in Sources */,
 				9C042FF2216EEFDF00689273 /* GitHubAPIError.swift in Sources */,
 				9C042FED216EE9C200689273 /* Repository.swift in Sources */,
-				9CFAF0D121E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +358,6 @@
 		};
 		17DFDD72211E7BF10060A993 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19D6C5CF63609B03A6BCCE1F /* Pods-swift-rindoku-sample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -506,7 +374,6 @@
 		};
 		17DFDD73211E7BF10060A993 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3012A001AF9E22815FABFFA /* Pods-swift-rindoku-sample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

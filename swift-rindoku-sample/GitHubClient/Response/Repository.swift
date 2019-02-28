@@ -7,15 +7,14 @@
 //
 
 import Foundation
-import RealmSwift
 
-class Repository: Object, Decodable {
+struct Repository: Decodable {
     
-    @objc dynamic private(set) var id: Int = 0
-    @objc dynamic private(set) var name: String = ""
-    @objc dynamic private(set) var fullName: String = ""  // 詳細ページ表示用に追加
-    @objc dynamic private(set) var htmlUrl: String = ""
-    @objc dynamic private(set) var owner: User!
+    let id: Int
+    let name: String
+    let fullName: String  // 詳細ページ表示用に追加
+    let htmlUrl: String
+    let owner: User
     
     enum CodingKeys: String, CodingKey {
         case id

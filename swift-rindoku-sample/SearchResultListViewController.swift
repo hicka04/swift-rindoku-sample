@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SearchResultListViewController.swift
 //  swift-rindoku-sample
 //
 //  Created by hicka04 on 2018/08/11.
@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class ListViewController: UIViewController {
+class SearchResultListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     private lazy var searchController: UISearchController = {
@@ -77,6 +77,8 @@ class ListViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                
+                self.tableView.flashScrollIndicators()
             }
         }
     }
@@ -124,7 +126,7 @@ class ListViewController: UIViewController {
 
 // UITableViewDelegateとUITableViewDataSourceに準拠
 // extensionに切り出すと可読性が上がる
-extension ListViewController: UITableViewDelegate, UITableViewDataSource {
+extension SearchResultListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -139,7 +141,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         // viewDidLoadで登録しておいたセルを取得
         // カスタムセルを取り出すときはキャストが必要(強制案ラップでOK)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RepositoryCell
-        cell.set(repositoryName: data[indexPath.row].fullName)
+        cell.set(repository: data[indexPath.row], delegate: self)
         return cell
     }
     
@@ -148,7 +150,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         // 押されたセルの場所(indexPath)などに応じて処理を変えることができるが
         // 今回は必ずDetailViewControllerに遷移するように実装
         let repository = data[indexPath.row]
-        let detailView = DetailViewController(repository: repository)
+        let detailView = RepositoryDetailViewController(repository: repository)
+        detailView.hidesBottomBarWhenPushed = true
         
         // navigationController:画面遷移を司るクラス
         // pushViewController(_:animated:)で画面遷移できる
@@ -156,7 +159,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension ListViewController: UISearchBarDelegate {
+extension SearchResultListViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         defer {
@@ -173,14 +176,14 @@ extension ListViewController: UISearchBarDelegate {
     }
 }
 
-extension ListViewController: UISearchControllerDelegate {
+extension SearchResultListViewController: UISearchControllerDelegate {
     
     func didDismissSearchController(_ searchController: UISearchController) {
         searchController.searchBar.text = keyword
     }
 }
 
-extension ListViewController: SearchResultsControllerDelegate {
+extension SearchResultListViewController: SearchResultsControllerDelegate {
     
     func resultsController(_ resultsController: UIViewController,
                            didUpdateKeyword keyword: String,
@@ -190,6 +193,31 @@ extension ListViewController: SearchResultsControllerDelegate {
             self.keyword = keyword
             searchController.dismiss(animated: true, completion: nil)
             tableView.setContentOffset(.zero, animated: true)
+        }
+    }
+}
+
+extension SearchResultListViewController: RepositoryCellDelegate {
+    
+    func repositoryCell(_ cell: RepositoryCell, didTapBookmarkButtonFrom repository: Repository) {
+        if realm.objects(Bookmark.self).contains(where: { bookmark in bookmark.repository.id == repository.id }) {
+            realm.objects(Bookmark.self)
+                .filter { bookmark -> Bool in
+                    bookmark.repository.id == repository.id
+                }.forEach { bookmark in
+                    try! realm.write {
+                        realm.delete(bookmark)
+                    }
+                }
+        } else {
+            guard realm.objects(Bookmark.self).count < 50 else {
+                present(UIAlertController.createBookmarkLimitAlert(), animated: true, completion: nil)
+                return
+            }
+            
+            try! realm.write {
+                realm.add(Bookmark(repository: repository))
+            }
         }
     }
 }

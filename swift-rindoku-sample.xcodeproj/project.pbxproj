@@ -121,13 +121,13 @@
 		17DFDD61211E7BE40060A993 /* swift-rindoku-sample */ = {
 			isa = PBXGroup;
 			children = (
+				9C92B7BA224C66FB0031C95A /* modules */,
+				9C92B7BE224C67180031C95A /* data */,
 				171FB78121F5A40A00DF6837 /* extension */,
 				9CB98B5521C1FABB0011182B /* entities */,
 				9C042FE8216EE97300689273 /* GitHubClient */,
 				17DFDD62211E7BE40060A993 /* AppDelegate.swift */,
 				171FB77F21F5A2F900DF6837 /* TabBarController.swift */,
-				17DFDD64211E7BE40060A993 /* SearchResultListViewController.swift */,
-				17DFDD74211E7D840060A993 /* SearchResultListViewController.xib */,
 				171FB77B21F5A26000DF6837 /* BookmarkListViewController.swift */,
 				171FB77C21F5A26000DF6837 /* BookmarkListViewController.xib */,
 				9CA20FA6215C7EEB0014433A /* RepositoryDetailViewController.swift */,
@@ -199,6 +199,48 @@
 				9C993F232178252F00D789B1 /* GitHubAPI.swift */,
 			);
 			path = Request;
+			sourceTree = "<group>";
+		};
+		9C92B7BA224C66FB0031C95A /* modules */ = {
+			isa = PBXGroup;
+			children = (
+				9C92B7BD224C67110031C95A /* view */,
+				9C92B7BC224C670A0031C95A /* presenter */,
+				9C92B7BB224C67040031C95A /* router */,
+			);
+			name = modules;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		9C92B7BB224C67040031C95A /* router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = router;
+			sourceTree = "<group>";
+		};
+		9C92B7BC224C670A0031C95A /* presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = presenter;
+			sourceTree = "<group>";
+		};
+		9C92B7BD224C67110031C95A /* view */ = {
+			isa = PBXGroup;
+			children = (
+				17DFDD64211E7BE40060A993 /* SearchResultListViewController.swift */,
+				17DFDD74211E7D840060A993 /* SearchResultListViewController.xib */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		9C92B7BE224C67180031C95A /* data */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = data;
+			path = "New Group1";
 			sourceTree = "<group>";
 		};
 		9CB98B5521C1FABB0011182B /* entities */ = {

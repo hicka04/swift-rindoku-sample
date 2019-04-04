@@ -28,24 +28,24 @@ extension SearchHistoryInteractor: SearchHistoryUsecase {
     
     func save(keyword: String) throws {
         if let sameKeywordHistory = realm.objects(SearchKeywordHistory.self).first(where: { $0.keyword == keyword }) {
-            try! realm.write {
+            try realm.write {
                 sameKeywordHistory.lastSearchAt = Date()
             }
         } else {
             let max = 50
             if realm.objects(SearchKeywordHistory.self).count >= max {
-                realm.objects(SearchKeywordHistory.self).sorted(byKeyPath: "lastSearchAt").enumerated().forEach { (offset, history) in
+                try realm.objects(SearchKeywordHistory.self).sorted(byKeyPath: "lastSearchAt").enumerated().forEach { (offset, history) in
                     guard offset >= max - 1 else {
                         return
                     }
-                    try! realm.write {
+                    try realm.write {
                         realm.delete(history)
                     }
                 }
             }
             let history = SearchKeywordHistory()
             history.keyword = keyword
-            try! realm.write {
+            try realm.write {
                 realm.add(history)
             }
         }

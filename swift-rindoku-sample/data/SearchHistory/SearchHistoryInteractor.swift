@@ -17,7 +17,7 @@ protocol SearchHistoryUsecase: AnyObject {
 
 final class SearchHistoryInteractor {
     
-    let realm: Realm
+    private let realm: Realm
     
     init(realm: Realm = try! Realm()) {
         self.realm = realm

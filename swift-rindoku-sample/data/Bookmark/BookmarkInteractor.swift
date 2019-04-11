@@ -34,8 +34,15 @@ extension BookmarkInteractor: BookmarkUsecase {
             return
         }
         
-        try! realm.write {
-            realm.add(Bookmark(repository: repository))
+        do {
+            defer {
+                completion(.success(repository))
+            }
+            try realm.write {
+                realm.add(Bookmark(repository: repository))
+            }
+        } catch {
+            completion(.failure(.unexpected(error)))
         }
     }
     

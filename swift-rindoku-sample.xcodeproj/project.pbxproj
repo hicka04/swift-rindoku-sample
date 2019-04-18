@@ -32,6 +32,7 @@
 		9C92B7C4224C6C3A0031C95A /* SearchHistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C92B7C3224C6C3A0031C95A /* SearchHistoryInteractor.swift */; };
 		9C993F222178232D00D789B1 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C993F212178232D00D789B1 /* HTTPMethod.swift */; };
 		9C993F242178252F00D789B1 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C993F232178252F00D789B1 /* GitHubAPI.swift */; };
+		9CA16F7B225EDD1900A81BBE /* SearchResultListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA16F7A225EDD1900A81BBE /* SearchResultListPresenter.swift */; };
 		9CA20FA8215C7EEB0014433A /* RepositoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA20FA6215C7EEB0014433A /* RepositoryDetailViewController.swift */; };
 		9CA20FA9215C7EEB0014433A /* RepositoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA20FA7215C7EEB0014433A /* RepositoryDetailViewController.xib */; };
 		9CB98B5821C1FB040011182B /* SearchKeywordHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */; };
@@ -69,6 +70,7 @@
 		9C92B7C3224C6C3A0031C95A /* SearchHistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryInteractor.swift; sourceTree = "<group>"; };
 		9C993F212178232D00D789B1 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		9C993F232178252F00D789B1 /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
+		9CA16F7A225EDD1900A81BBE /* SearchResultListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListPresenter.swift; sourceTree = "<group>"; };
 		9CA20FA6215C7EEB0014433A /* RepositoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewController.swift; sourceTree = "<group>"; };
 		9CA20FA7215C7EEB0014433A /* RepositoryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryDetailViewController.xib; sourceTree = "<group>"; };
 		9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistory.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 		9C92B7BC224C670A0031C95A /* presenter */ = {
 			isa = PBXGroup;
 			children = (
+				9CA16F7A225EDD1900A81BBE /* SearchResultListPresenter.swift */,
 			);
 			path = presenter;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				171FB77D21F5A26000DF6837 /* BookmarkListViewController.swift in Sources */,
 				9C62B1952165B0FF00B15B5C /* RepositoryCell.swift in Sources */,
 				175864FA21F5C2E3006F7FB2 /* Bookmark.swift in Sources */,
+				9CA16F7B225EDD1900A81BBE /* SearchResultListPresenter.swift in Sources */,
 				9CFAF0D421E6F99100CB08E9 /* SearchKeywordHistoryCell.swift in Sources */,
 				9C042FF2216EEFDF00689273 /* GitHubAPIError.swift in Sources */,
 				9C042FED216EE9C200689273 /* Repository.swift in Sources */,

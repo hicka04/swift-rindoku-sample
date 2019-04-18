@@ -9,6 +9,10 @@
 import UIKit
 import RealmSwift
 
+protocol SearchResultListView: AnyObject {
+    
+}
+
 class SearchResultListViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!

@@ -20,6 +20,7 @@ protocol SearchResultListPresentation: AnyObject {
 final class SearchResultListPresenter {
     
     private weak var view: SearchResultListView?
+    private let router: SearchResultListWireframe
     private let repositoryInteractor: GitHubRepositoryUsecase
     private let historyInteractor: SearchHistoryUsecase
     private let bookmarkInteractor: BookmarkUsecase
@@ -29,10 +30,10 @@ final class SearchResultListPresenter {
             guard let keyword = searchKeyword else { return }
             
             // TODO: viewにキーワードを伝える
-            repositoryInteractor.search(from: keyword) { result in
+            repositoryInteractor.search(from: keyword) { [weak self] result in
                 switch result {
                 case .success(let repositories):
-                    self.repositories = repositories
+                    self?.repositories = repositories
                 case .failure:
                     // viewにエラーを伝える
                     break
@@ -50,10 +51,12 @@ final class SearchResultListPresenter {
     }
     
     init(view: SearchResultListView,
+         router: SearchResultListWireframe,
          repositoryInteractor: GitHubRepositoryUsecase,
          historyInteractor: SearchHistoryUsecase,
          bookmarkInteractor: BookmarkUsecase) {
         self.view = view
+        self.router = router
         self.repositoryInteractor = repositoryInteractor
         self.historyInteractor = historyInteractor
         self.bookmarkInteractor = bookmarkInteractor

@@ -15,6 +15,8 @@ protocol SearchResultListView: AnyObject {
 
 class SearchResultListViewController: UIViewController {
     
+    var presenter: SearchResultListPresentation!
+    
     @IBOutlet private weak var tableView: UITableView!
     private lazy var searchController: UISearchController = {
         let resultsController = SearchKeywordHistoryListViewController()
@@ -126,6 +128,10 @@ class SearchResultListViewController: UIViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
+}
+
+extension SearchResultListViewController: SearchResultListView {
+    
 }
 
 // UITableViewDelegateとUITableViewDataSourceに準拠

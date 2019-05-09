@@ -36,6 +36,7 @@
 		9CA20FA8215C7EEB0014433A /* RepositoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA20FA6215C7EEB0014433A /* RepositoryDetailViewController.swift */; };
 		9CA20FA9215C7EEB0014433A /* RepositoryDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA20FA7215C7EEB0014433A /* RepositoryDetailViewController.xib */; };
 		9CB98B5821C1FB040011182B /* SearchKeywordHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */; };
+		9CE504342271541C00C40EBB /* SearchResultListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE504332271541C00C40EBB /* SearchResultListRouter.swift */; };
 		9CFAF0D121E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFAF0D021E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift */; };
 		9CFAF0D421E6F99100CB08E9 /* SearchKeywordHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFAF0D221E6F99100CB08E9 /* SearchKeywordHistoryCell.swift */; };
 		9CFAF0D521E6F99100CB08E9 /* SearchKeywordHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CFAF0D321E6F99100CB08E9 /* SearchKeywordHistoryCell.xib */; };
@@ -74,6 +75,7 @@
 		9CA20FA6215C7EEB0014433A /* RepositoryDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailViewController.swift; sourceTree = "<group>"; };
 		9CA20FA7215C7EEB0014433A /* RepositoryDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryDetailViewController.xib; sourceTree = "<group>"; };
 		9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistory.swift; sourceTree = "<group>"; };
+		9CE504332271541C00C40EBB /* SearchResultListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultListRouter.swift; sourceTree = "<group>"; };
 		9CFAF0D021E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistoryListViewController.swift; sourceTree = "<group>"; };
 		9CFAF0D221E6F99100CB08E9 /* SearchKeywordHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchKeywordHistoryCell.swift; sourceTree = "<group>"; };
 		9CFAF0D321E6F99100CB08E9 /* SearchKeywordHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchKeywordHistoryCell.xib; sourceTree = "<group>"; };
@@ -225,13 +227,6 @@
 			path = modules;
 			sourceTree = "<group>";
 		};
-		9C92B7BB224C67040031C95A /* router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = router;
-			sourceTree = "<group>";
-		};
 		9C92B7BC224C670A0031C95A /* presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,7 +275,7 @@
 			children = (
 				9C92B7BD224C67110031C95A /* view */,
 				9C92B7BC224C670A0031C95A /* presenter */,
-				9C92B7BB224C67040031C95A /* router */,
+				9CE504322271538100C40EBB /* router */,
 			);
 			path = SearchResultList;
 			sourceTree = "<group>";
@@ -300,6 +295,14 @@
 				9CB98B5721C1FB040011182B /* SearchKeywordHistory.swift */,
 			);
 			path = SearchKeywordHistory;
+			sourceTree = "<group>";
+		};
+		9CE504322271538100C40EBB /* router */ = {
+			isa = PBXGroup;
+			children = (
+				9CE504332271541C00C40EBB /* SearchResultListRouter.swift */,
+			);
+			path = router;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,6 +446,7 @@
 				9CA16F7B225EDD1900A81BBE /* SearchResultListPresenter.swift in Sources */,
 				9CFAF0D421E6F99100CB08E9 /* SearchKeywordHistoryCell.swift in Sources */,
 				9C042FF2216EEFDF00689273 /* GitHubAPIError.swift in Sources */,
+				9CE504342271541C00C40EBB /* SearchResultListRouter.swift in Sources */,
 				9C042FED216EE9C200689273 /* Repository.swift in Sources */,
 				9CFAF0D121E6E2BC00CB08E9 /* SearchKeywordHistoryListViewController.swift in Sources */,
 			);

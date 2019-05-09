@@ -11,19 +11,12 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
+    let rootRouter = RootRouter(window: UIWindow(frame: UIScreen.main.bounds))
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let tab = TabBarController()
-        
-        let window = UIWindow(frame: UIScreen.main.bounds)
-        window.rootViewController = tab
-        self.window = window
-        
-        window.makeKeyAndVisible()
+        rootRouter.showFirstView()
         
         return true
     }

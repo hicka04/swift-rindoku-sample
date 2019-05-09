@@ -26,6 +26,7 @@
 		9C042FF7216EF2D700689273 /* GitHubRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C042FF6216EF2D700689273 /* GitHubRequest.swift */; };
 		9C172A282255A25000E0E6A6 /* BookmarkInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C172A272255A25000E0E6A6 /* BookmarkInteractor.swift */; };
 		9C23A87B2181625C00C72BBF /* GitHubClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C23A87A2181625C00C72BBF /* GitHubClient.swift */; };
+		9C30A83F2283C7BB0028ED41 /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C30A83E2283C7BB0028ED41 /* RootRouter.swift */; };
 		9C62B1952165B0FF00B15B5C /* RepositoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C62B1932165B0FF00B15B5C /* RepositoryCell.swift */; };
 		9C62B1962165B0FF00B15B5C /* RepositoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */; };
 		9C92B7C1224C67E60031C95A /* GitHubRepositoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C92B7C0224C67E60031C95A /* GitHubRepositoryInteractor.swift */; };
@@ -65,6 +66,7 @@
 		9C042FF6216EF2D700689273 /* GitHubRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRequest.swift; sourceTree = "<group>"; };
 		9C172A272255A25000E0E6A6 /* BookmarkInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkInteractor.swift; sourceTree = "<group>"; };
 		9C23A87A2181625C00C72BBF /* GitHubClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubClient.swift; sourceTree = "<group>"; };
+		9C30A83E2283C7BB0028ED41 /* RootRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		9C62B1932165B0FF00B15B5C /* RepositoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryCell.swift; sourceTree = "<group>"; };
 		9C62B1942165B0FF00B15B5C /* RepositoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryCell.xib; sourceTree = "<group>"; };
 		9C92B7C0224C67E60031C95A /* GitHubRepositoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubRepositoryInteractor.swift; sourceTree = "<group>"; };
@@ -219,9 +221,18 @@
 			path = Bookmark;
 			sourceTree = "<group>";
 		};
+		9C30A83D2283C7AC0028ED41 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				9C30A83E2283C7BB0028ED41 /* RootRouter.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
 		9C92B7BA224C66FB0031C95A /* modules */ = {
 			isa = PBXGroup;
 			children = (
+				9C30A83D2283C7AC0028ED41 /* Root */,
 				9CA16F79225EDB8900A81BBE /* SearchResultList */,
 			);
 			path = modules;
@@ -440,6 +451,7 @@
 				171FB78021F5A2F900DF6837 /* TabBarController.swift in Sources */,
 				9C993F242178252F00D789B1 /* GitHubAPI.swift in Sources */,
 				9C042FF7216EF2D700689273 /* GitHubRequest.swift in Sources */,
+				9C30A83F2283C7BB0028ED41 /* RootRouter.swift in Sources */,
 				171FB77D21F5A26000DF6837 /* BookmarkListViewController.swift in Sources */,
 				9C62B1952165B0FF00B15B5C /* RepositoryCell.swift in Sources */,
 				175864FA21F5C2E3006F7FB2 /* Bookmark.swift in Sources */,

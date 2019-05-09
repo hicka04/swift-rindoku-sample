@@ -25,7 +25,7 @@ class TabBarController: UITabBarController {
     }
     
     let searchResult: UIViewController = {
-        let searchResult = UINavigationController(rootViewController: SearchResultListViewController())
+        let searchResult = UINavigationController(rootViewController: SearchResultListRouter.assembleModules())
         searchResult.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         return searchResult
     }()

@@ -73,7 +73,7 @@ extension SearchResultListPresenter: SearchResultListPresentation {
     }
     
     func didSelectRow(at indexPath: IndexPath) {
-        // TODO: routerに伝える
+        router.showRepositoryDetailView(repository: repositories[indexPath.row])
     }
     
     func searchBarSearchButtonClicked(searchKeyword: String) {

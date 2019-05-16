@@ -10,6 +10,7 @@ import UIKit
 
 protocol SearchResultListWireframe: AnyObject {
     
+    func showRepositoryDetailView(repository: Repository)
 }
 
 final class SearchResultListRouter {
@@ -40,4 +41,12 @@ final class SearchResultListRouter {
 
 extension SearchResultListRouter: SearchResultListWireframe {
     
+    func showRepositoryDetailView(repository: Repository) {
+        let detailView = RepositoryDetailViewController(repository: repository)
+        detailView.hidesBottomBarWhenPushed = true
+        
+        // navigationController:画面遷移を司るクラス
+        // pushViewController(_:animated:)で画面遷移できる
+        viewController.navigationController?.pushViewController(detailView, animated: true)
+    }
 }

@@ -11,6 +11,7 @@ import RealmSwift
 
 protocol SearchResultListView: AnyObject {
     
+    func updateLatestSearchKeyword(_ keyword: String)
 }
 
 class SearchResultListViewController: UIViewController {
@@ -44,10 +45,6 @@ class SearchResultListViewController: UIViewController {
                         self?.present(alert, animated: true, completion: nil)
                     }
                 }
-            }
-            
-            if searchController.searchBar.text?.isEmpty ?? true {
-                searchController.searchBar.text = keyword
             }
             
             if let sameKeywordHistory = realm.objects(SearchKeywordHistory.self).first(where: { $0.keyword == keyword }) {
@@ -112,11 +109,7 @@ class SearchResultListViewController: UIViewController {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
         
-        if let last = realm.objects(SearchKeywordHistory.self).sorted(byKeyPath: "lastSearchAt").last {
-            keyword = last.keyword
-        }
-        
-        print(realm.objects(SearchKeywordHistory.self))
+        presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,6 +125,13 @@ class SearchResultListViewController: UIViewController {
 
 extension SearchResultListViewController: SearchResultListView {
     
+    func updateLatestSearchKeyword(_ keyword: String) {
+        guard searchController.searchBar.text?.isEmpty ?? true else {
+            return
+        }
+        
+        searchController.searchBar.text = keyword
+    }
 }
 
 // UITableViewDelegateとUITableViewDataSourceに準拠

@@ -29,7 +29,8 @@ final class SearchResultListPresenter {
         didSet {
             guard let keyword = searchKeyword else { return }
             
-            // TODO: viewにキーワードを伝える
+            view?.updateLatestSearchKeyword(keyword)
+            
             repositoryInteractor.search(from: keyword) { [weak self] result in
                 switch result {
                 case .success(let repositories):

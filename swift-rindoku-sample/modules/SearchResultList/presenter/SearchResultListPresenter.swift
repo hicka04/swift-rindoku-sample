@@ -14,6 +14,7 @@ protocol SearchResultListPresentation: AnyObject {
     func didSelectRow(at indexPath: IndexPath)
     func searchBarSearchButtonClicked(searchKeyword: String)
     func resultsControllerDidUpdateKeyword(_ keyword: String)
+    func didDismissSearchController()
     func bookmarkButtonTapped(repository: Repository)
 }
 
@@ -47,7 +48,7 @@ final class SearchResultListPresenter {
     
     private var repositories: [Repository] = [] {
         didSet {
-            // TODO: viewに結果伝える
+            view?.updateRepositories(repositories)
         }
     }
     
@@ -82,6 +83,13 @@ extension SearchResultListPresenter: SearchResultListPresentation {
     
     func resultsControllerDidUpdateKeyword(_ keyword: String) {
         searchKeyword = keyword
+    }
+    
+    func didDismissSearchController() {
+        guard let keyword = searchKeyword else {
+            return
+        }
+        view?.updateLatestSearchKeyword(keyword)
     }
     
     func bookmarkButtonTapped(repository: Repository) {

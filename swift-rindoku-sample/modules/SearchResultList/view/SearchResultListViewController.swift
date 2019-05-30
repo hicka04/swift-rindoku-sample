@@ -12,6 +12,7 @@ import RealmSwift
 protocol SearchResultListView: AnyObject {
     
     func updateLatestSearchKeyword(_ keyword: String)
+    func updateRepositories(_ repositories: [Repository])
 }
 
 class SearchResultListViewController: UIViewController {
@@ -32,51 +33,11 @@ class SearchResultListViewController: UIViewController {
     
     private let cellId = "cellId"
     
-    private var keyword = "" {
-        didSet {
-            let request = GitHubAPI.SearchRepositories(keyword: keyword)
-            GitHubClient().send(request: request) { [weak self] result in
-                switch result {
-                case .success(let value):
-                    self?.data = value.items
-                case .failure(let error):
-                    let alert = UIAlertController.createGitHubErrorAlert(from: error)
-                    DispatchQueue.main.async {
-                        self?.present(alert, animated: true, completion: nil)
-                    }
-                }
-            }
-            
-            if let sameKeywordHistory = realm.objects(SearchKeywordHistory.self).first(where: { $0.keyword == keyword }) {
-                try! realm.write {
-                    sameKeywordHistory.lastSearchAt = Date()
-                }
-            } else {
-                let max = 50
-                if realm.objects(SearchKeywordHistory.self).count >= max {
-                    realm.objects(SearchKeywordHistory.self).sorted(byKeyPath: "lastSearchAt").enumerated().forEach { (offset, history) in
-                        guard offset >= max - 1 else {
-                            return
-                        }
-                        try! realm.write {
-                            realm.delete(history)
-                        }
-                    }
-                }
-                let history = SearchKeywordHistory()
-                history.keyword = keyword
-                try! realm.write {
-                    realm.add(history)
-                }
-            }
-        }
-    }
-    
     let realm = try! Realm()
     
     // 配列を定義してこれを元にtableViewに表示
     // APIクライアントを作ったらそのデータに差し替え
-    var data: [Repository] = [] {
+    private var repositories: [Repository] = [] {
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -132,6 +93,10 @@ extension SearchResultListViewController: SearchResultListView {
         
         searchController.searchBar.text = keyword
     }
+    
+    func updateRepositories(_ repositories: [Repository]) {
+        self.repositories = repositories
+    }
 }
 
 // UITableViewDelegateとUITableViewDataSourceに準拠
@@ -144,14 +109,14 @@ extension SearchResultListViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // 配列の要素数を返す
-        return data.count
+        return repositories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // viewDidLoadで登録しておいたセルを取得
         // カスタムセルを取り出すときはキャストが必要(強制案ラップでOK)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! RepositoryCell
-        cell.set(repository: data[indexPath.row], delegate: self)
+        cell.set(repository: repositories[indexPath.row], delegate: self)
         return cell
     }
     
@@ -174,16 +139,16 @@ extension SearchResultListViewController: UISearchBarDelegate {
             return
         }
         
-        keyword = searchBarText
-        
         tableView.setContentOffset(.zero, animated: true)
+        
+        presenter.searchBarSearchButtonClicked(searchKeyword: searchBarText)
     }
 }
 
 extension SearchResultListViewController: UISearchControllerDelegate {
     
     func didDismissSearchController(_ searchController: UISearchController) {
-        searchController.searchBar.text = keyword
+        presenter.didDismissSearchController()
     }
 }
 
@@ -194,9 +159,9 @@ extension SearchResultListViewController: SearchResultsControllerDelegate {
                            shouldSearch: Bool) {
         searchController.searchBar.text = keyword
         if shouldSearch {
-            self.keyword = keyword
             searchController.dismiss(animated: true, completion: nil)
             tableView.setContentOffset(.zero, animated: true)
+            presenter.resultsControllerDidUpdateKeyword(keyword)
         }
     }
 }
